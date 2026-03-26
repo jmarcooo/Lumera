@@ -15,13 +15,13 @@
       theme: {
         extend: {
           colors: {
-            primary: '#0f49bd',
+            primary: '#5A71F6',
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
           },
           borderRadius: {
-            'custom': '4px', // ROUND_FOUR implementation
+            'custom': '8px', // ROUND_FOUR implementation
           }
         }
       }
@@ -33,7 +33,7 @@
       font-family: 'Inter', sans-serif;
     }
     .round-four {
-      border-radius: 4px !important;
+      border-radius: 8px !important;
     }
   </style>
 </head>
@@ -43,10 +43,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 <!-- Logo and Brand -->
 <div class="flex items-center gap-2">
-<div class="w-8 h-8 bg-primary round-four flex items-center justify-center">
-<span class="text-white font-bold">L</span>
-</div>
-<h1 class="text-xl font-bold tracking-tight text-primary">Lumera</h1>
+<img src="logo.png" alt="Lumera" class="h-14 w-auto">
 </div>
 <!-- Nav Links -->
 <nav class="hidden md:flex space-x-8">
@@ -70,7 +67,7 @@
 <p class="mt-3 text-lg text-slate-500">Discover accredited services for construction, weddings, and more.</p>
 </div>
 <!-- Main Search Bar -->
-<div class="max-w-3xl mx-auto flex flex-col md:flex-row gap-2 bg-white p-2 round-four shadow-sm border border-slate-200">
+<div class="max-w-3xl mx-auto flex flex-col md:flex-row gap-2 bg-white p-3 round-four shadow-md hover:shadow-lg transition-shadow duration-300 border border-slate-200">
 <div class="flex-1 relative">
 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
 <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
@@ -158,7 +155,7 @@
 <!-- Grid Container -->
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 <!-- Provider Card 1 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-md transition-shadow group cursor-pointer" data-purpose="service-provider-card">
+<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
 <div class="h-48 bg-slate-100 relative overflow-hidden">
 <img alt="Modern Construction Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcGaJNFghl2JjBsRKszgzNX4ilKiBjF62JggQq5qVA0gTZp92GbhdUNS8sOCp8wT5PoZ7_Ujfr_60_Iypc31_gH9LMUA0w7dCkZwxC5-N3A3MY2MpwqQWLrC3uL9LUhDVhcf2pcLWLyWin_2bAt0MaOKFlSYg47diufdw36iCnhtmZzcUQZDRKSWmepBqs31unDSKz5klPdOukXkyt7gAER0KoKCNRz4RJatbS5i_6vwUscT0WndV7VotPnAU_PdGy-McVkUOjinA"/>
 <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-primary flex items-center gap-1 shadow-sm">
@@ -189,7 +186,7 @@
 </div>
 </article>
 <!-- Provider Card 2 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-md transition-shadow group cursor-pointer" data-purpose="service-provider-card">
+<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
 <div class="h-48 bg-slate-100 relative overflow-hidden">
 <img alt="Petals &amp; Prose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcOrxwdFyLXnTbc0VCvBU75nIwQ4qmafXSOMJlUE103xsn1MIhIw2w7Uftmo4zM4FKnFhUEjkQVM1luiYqiELH_JY9fbHLF24jTD4V84WcoV5A3-6cAM5iKT_egnOlHmDe5fZuDULJZUaMS5aEubRI8mm-6wEq4972wLEFwXQERBmkWHugcLI2Teqqo5kQ5EKYsdpYwmcjplbZUEFI7up7mppnAKWJUFWK6WIly4OLWthxLZdHpzjy8zPCDWeSMavP9XURg4f6ZnM"/>
 <div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-white flex items-center gap-1 shadow-sm">
@@ -220,7 +217,7 @@
 </div>
 </article>
 <!-- Provider Card 3 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-md transition-shadow group cursor-pointer" data-purpose="service-provider-card">
+<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
 <div class="h-48 bg-slate-100 relative overflow-hidden">
 <img alt="Urban Supply Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtFgS2UChow2epW7bi83eURDIZuGJz-v-KqCBgIeXlhH78G7MlJFpiCBag8Dh0lAL9d6cTj9i8NGnchHmLBXrn9YZyZbSoDxt2z0fddal4dAO08jgAcnBuHcXTuvxtKm9HXjCfJodFn6-gLSFncXHPj-9FjuniiR3ej1umym88mKgIGREfx2q8SyenqPwKJrUj52g5rk3byc9gF_Et0WHqJdRbyANscIOrovb5pJF4-KSoOlnwnmv2sf_GgYFcbIK247AsiXkq5w"/>
 </div>
