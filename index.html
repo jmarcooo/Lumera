@@ -94,8 +94,27 @@
 </section>
 <!-- END: SearchSection -->
 <div class="flex flex-col gap-8">
+<!-- BEGIN: ResultsGrid -->
+<section class="w-full">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 mb-6">
+<div class="flex items-center gap-4">
+<button onclick="document.getElementById('filters-sidebar').classList.toggle('hidden')" class="flex items-center gap-2 border border-slate-300 round-four px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+Filters
+</button>
+<p class="text-slate-500 font-medium">Showing <span class="text-slate-900 font-bold">124</span> results</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm text-slate-500">Sort by:</span>
+<select class="border-none bg-transparent font-semibold text-slate-900 focus:ring-0 cursor-pointer px-0">
+<option>Recommended</option>
+<option>Highest Rated</option>
+<option>Newest</option>
+</select>
+</div>
+</div>
 <!-- BEGIN: FilterBar -->
-<aside id="filters-sidebar" class="hidden w-full bg-white border border-slate-200 round-four p-4 shadow-sm" data-purpose="discovery-filters">
+<aside id="filters-sidebar" class="hidden w-full bg-white border border-slate-200 round-four p-4 shadow-sm mb-6" data-purpose="discovery-filters">
   <div class="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center">
 
     <!-- Category Filter -->
@@ -152,25 +171,6 @@
   </div>
 </aside>
 <!-- END: FilterBar -->
-<!-- BEGIN: ResultsGrid -->
-<section class="w-full">
-<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 mb-6">
-<div class="flex items-center gap-4">
-<button onclick="document.getElementById('filters-sidebar').classList.toggle('hidden')" class="flex items-center gap-2 border border-slate-300 round-four px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-Filters
-</button>
-<p class="text-slate-500 font-medium">Showing <span class="text-slate-900 font-bold">124</span> results</p>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-sm text-slate-500">Sort by:</span>
-<select class="border-none bg-transparent font-semibold text-slate-900 focus:ring-0 cursor-pointer px-0">
-<option>Recommended</option>
-<option>Highest Rated</option>
-<option>Newest</option>
-</select>
-</div>
-</div>
 <!-- Grid Container -->
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 <!-- Provider Card 1 -->
