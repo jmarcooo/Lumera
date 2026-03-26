@@ -52,9 +52,9 @@
 <a class="text-slate-600 hover:text-primary font-medium" href="#">For Businesses</a>
 </nav>
 <!-- User Actions -->
-<div class="flex items-center gap-4">
-<button class="text-slate-600 hover:text-primary font-medium">Log In</button>
-<button class="bg-primary text-white px-4 py-2 round-four font-medium hover:bg-blue-700 transition-colors">Join Lumera</button>
+<div class="flex items-center gap-2 md:gap-4">
+<button class="hidden sm:block text-slate-600 hover:text-primary font-medium text-sm md:text-base">Log In</button>
+<button class="bg-primary text-white px-3 py-2 md:px-4 md:py-2 round-four font-medium hover:bg-blue-700 transition-colors text-sm md:text-base">Join Lumera</button>
 </div>
 </div>
 </header>
@@ -67,7 +67,7 @@
 <p class="mt-3 text-lg text-slate-500">Discover accredited services for construction, weddings, and more.</p>
 </div>
 <!-- Main Search Bar -->
-<div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center bg-white rounded-full overflow-hidden shadow-lg border border-gray-200 divide-y md:divide-y-0 md:divide-x divide-gray-200 relative">
+<div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center bg-white rounded-3xl md:rounded-full overflow-hidden shadow-lg border border-gray-200 divide-y md:divide-y-0 md:divide-x divide-gray-200 relative">
 
         <!-- Service Input -->
         <label class="flex-1 w-full md:w-auto px-6 py-3 md:py-4 hover:bg-gray-100 cursor-pointer transition-colors duration-200 group relative focus-within:bg-gray-100 focus-within:shadow-md focus-within:z-10">
@@ -149,11 +149,11 @@
 <!-- END: FilterSidebar -->
 <!-- BEGIN: ResultsGrid -->
 <section class="flex-1">
-<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 mb-6">
 <p class="text-slate-500 font-medium">Showing <span class="text-slate-900 font-bold">124</span> results</p>
 <div class="flex items-center gap-2">
 <span class="text-sm text-slate-500">Sort by:</span>
-<select class="border-none bg-transparent font-semibold text-slate-900 focus:ring-0 cursor-pointer">
+<select class="border-none bg-transparent font-semibold text-slate-900 focus:ring-0 cursor-pointer px-0">
 <option>Recommended</option>
 <option>Highest Rated</option>
 <option>Newest</option>
@@ -822,8 +822,8 @@
 </main>
 <!-- BEGIN: MainFooter -->
 <footer class="bg-slate-900 text-slate-300 py-12 mt-20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-<div class="col-span-2 md:col-span-1">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="col-span-1 sm:col-span-2 lg:col-span-1">
 <h5 class="text-white font-bold mb-4">Lumera</h5>
 <p class="text-sm leading-relaxed">The global standard for service accreditation and professional discovery. Building trust, one connection at a time.</p>
 </div>
@@ -845,9 +845,9 @@
 </div>
 <div>
 <h5 class="text-white font-bold mb-4">Newsletter</h5>
-<div class="flex">
+<div class="flex flex-col sm:flex-row gap-2">
 <input class="bg-slate-800 border-none round-four w-full focus:ring-primary text-white text-sm" placeholder="Email" type="email"/>
-<button class="ml-2 bg-primary px-4 py-2 round-four text-white font-bold text-sm">Join</button>
+<button class="bg-primary px-4 py-2 round-four text-white font-bold text-sm w-full sm:w-auto text-center justify-center">Join</button>
 </div>
 </div>
 </div>
