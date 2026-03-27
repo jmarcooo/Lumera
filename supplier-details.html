@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Details - B2B Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="logo_mark.png" alt="B2B Connect" class="h-8 w-8 object-contain">
+                    <span class="font-bold text-xl tracking-tight text-slate-900">B2B Connect</span>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="text-sm font-medium text-slate-600 hover:text-slate-900">Directory</a>
+                    <a href="about.html" class="text-sm font-medium text-slate-600 hover:text-slate-900">About</a>
+                </nav>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-slate-400 hover:text-slate-600 transition-colors">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                </button>
+                <div class="w-px h-6 bg-slate-200 mx-2"></div>
+                <button class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                    <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="User" class="w-8 h-8 rounded-full border border-slate-200">
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+                <a href="index.html" class="hover:text-slate-900">Directory</a>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <a href="#" class="hover:text-slate-900">Manufacturing</a>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <span class="text-slate-900 font-medium">Acme Manufacturing Co.</span>
+            </nav>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Details Section -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Header Card -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-[#5A71F6]/10 text-[#5A71F6] rounded-xl flex items-center justify-center font-bold text-2xl">
+                                    A
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h1 class="text-2xl font-bold text-slate-900">Acme Manufacturing Co.</h1>
+                                        <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                                            Verified
+                                        </span>
+                                    </div>
+                                    <p class="text-slate-600 flex items-center gap-2">
+                                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                        Chicago, IL, USA
+                                    </p>
+                                </div>
+                            </div>
+                            <button class="w-full sm:w-auto px-4 py-2 bg-[#5A71F6] text-white font-medium rounded-lg hover:bg-[#4d61d6] transition-colors shadow-sm">
+                                Contact Supplier
+                            </button>
+                        </div>
+
+                        <div class="prose prose-slate max-w-none text-slate-600">
+                            <p>
+                                Acme Manufacturing Co. is a leading provider of precision-engineered industrial components.
+                                With over 25 years of experience, we specialize in high-tolerance machining, custom fabrication,
+                                and assembly services for the aerospace, automotive, and medical device sectors.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Certifications & Capabilities -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Certifications -->
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                            <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <i data-lucide="award" class="w-5 h-5 text-[#5A71F6]"></i>
+                                Certifications
+                            </h2>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3 text-slate-700">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i>
+                                    ISO 9001:2015
+                                </li>
+                                <li class="flex items-center gap-3 text-slate-700">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i>
+                                    AS9100D Aerospace
+                                </li>
+                                <li class="flex items-center gap-3 text-slate-700">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i>
+                                    RoHS Compliant
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Capabilities -->
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                            <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <i data-lucide="settings" class="w-5 h-5 text-[#5A71F6]"></i>
+                                Core Capabilities
+                            </h2>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">CNC Machining</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Metal Stamping</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Injection Molding</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Assembly</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products/Gallery Placeholder -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                        <h2 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                            <i data-lucide="box" class="w-5 h-5 text-[#5A71F6]"></i>
+                            Featured Products
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="aspect-square bg-slate-100 rounded-lg flex items-center justify-center border border-slate-200 group cursor-pointer hover:border-[#5A71F6] transition-colors">
+                                <i data-lucide="image" class="w-8 h-8 text-slate-400 group-hover:text-[#5A71F6] transition-colors"></i>
+                            </div>
+                            <div class="aspect-square bg-slate-100 rounded-lg flex items-center justify-center border border-slate-200 group cursor-pointer hover:border-[#5A71F6] transition-colors">
+                                <i data-lucide="image" class="w-8 h-8 text-slate-400 group-hover:text-[#5A71F6] transition-colors"></i>
+                            </div>
+                            <div class="aspect-square bg-slate-100 rounded-lg flex items-center justify-center border border-slate-200 group cursor-pointer hover:border-[#5A71F6] transition-colors">
+                                <i data-lucide="image" class="w-8 h-8 text-slate-400 group-hover:text-[#5A71F6] transition-colors"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+                    <!-- Quick Info -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Supplier Overview</h3>
+                        <dl class="space-y-4 text-sm">
+                            <div class="flex justify-between pb-4 border-b border-slate-100">
+                                <dt class="text-slate-500 flex items-center gap-2">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    Established
+                                </dt>
+                                <dd class="font-medium text-slate-900">1998</dd>
+                            </div>
+                            <div class="flex justify-between pb-4 border-b border-slate-100">
+                                <dt class="text-slate-500 flex items-center gap-2">
+                                    <i data-lucide="users" class="w-4 h-4"></i>
+                                    Employees
+                                </dt>
+                                <dd class="font-medium text-slate-900">250 - 500</dd>
+                            </div>
+                            <div class="flex justify-between pb-4 border-b border-slate-100">
+                                <dt class="text-slate-500 flex items-center gap-2">
+                                    <i data-lucide="dollar-sign" class="w-4 h-4"></i>
+                                    Revenue
+                                </dt>
+                                <dd class="font-medium text-slate-900">$10M - $50M</dd>
+                            </div>
+                            <div class="flex justify-between">
+                                <dt class="text-slate-500 flex items-center gap-2">
+                                    <i data-lucide="globe" class="w-4 h-4"></i>
+                                    Website
+                                </dt>
+                                <dd class="font-medium text-[#5A71F6] hover:underline cursor-pointer">acmemfg.com</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <!-- Performance Rating -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Performance</h3>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="text-3xl font-bold text-slate-900">4.8</div>
+                            <div class="flex text-yellow-400">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current text-slate-200"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-600">Based on 124 verified reviews from B2B Connect buyers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="index.html" class="flex items-center gap-2 mb-4">
+                        <img src="logo_mark.png" alt="B2B Connect" class="h-6 w-6 object-contain grayscale">
+                        <span class="font-bold text-lg text-slate-800">B2B Connect</span>
+                    </a>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        The premier global sourcing platform connecting buyers with verified suppliers.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Platform</h3>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-[#5A71F6] transition-colors">Browse Directory</a></li>
+                        <li><a href="#" class="hover:text-[#5A71F6] transition-colors">Supplier Verification</a></li>
+                        <li><a href="#" class="hover:text-[#5A71F6] transition-colors">Request Quotes</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Company</h3>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="about.html" class="hover:text-[#5A71F6] transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-[#5A71F6] transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-[#5A71F6] transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-slate-900 mb-4">Legal</h3>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-[#5A71F6] transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-[#5A71F6] transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+                <p>&copy; 2024 B2B Connect. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-slate-900"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-slate-900"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-slate-900"><i data-lucide="github" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
