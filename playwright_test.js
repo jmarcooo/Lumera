@@ -13,17 +13,17 @@ const fs = require('fs');
 
   // Test index.html
   await page.goto(`file://${path.resolve('index.html')}`);
-  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(1000);
   await page.screenshot({ path: '/home/jules/verification/screenshots/index.png', fullPage: true });
 
   // Test about.html
   await page.goto(`file://${path.resolve('about.html')}`);
-  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(1000);
   await page.screenshot({ path: '/home/jules/verification/screenshots/about.png', fullPage: true });
 
   // Test supplier-details.html
   await page.goto(`file://${path.resolve('supplier-details.html')}`);
-  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(1000);
   await page.screenshot({ path: '/home/jules/verification/screenshots/supplier-details.png', fullPage: true });
 
   await context.close();
