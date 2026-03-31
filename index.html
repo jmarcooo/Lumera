@@ -1,913 +1,498 @@
 <!DOCTYPE html>
-
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Lumera - Service Discovery</title>
-<!-- Tailwind CSS v3 with plugins -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts: Inter -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<script data-purpose="tailwind-config">
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#5A71F6',
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
-          borderRadius: {
-            'custom': '8px', // ROUND_FOUR implementation
-          }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumera - Trusted Wedding Suppliers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#0B0B0F',
+                        card: '#15151A',
+                        cardhover: '#1A1A22',
+                        primary: '#5A71F6',
+                        border: '#2A2A35',
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-<style data-purpose="custom-styling">
-    body {
-      background-color: #f8fafc;
-      font-family: 'Inter', sans-serif;
-    }
-    .round-four {
-      border-radius: 8px !important;
-    }
-  </style>
+    </script>
+    <style>
+        body { background-color: #0B0B0F; color: white; }
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(11, 11, 15, 1) 40%, rgba(11, 11, 15, 0.4) 100%),
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+        .search-bar-glass {
+            background: rgba(20, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #A855F7, #EC4899, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #EC4899, #8B5CF6);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+        .btn-orange-gradient {
+            background: linear-gradient(135deg, #F97316, #EC4899);
+        }
+        .btn-blue-gradient {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+        }
+        .banner-orange {
+            background: linear-gradient(135deg, #431407 0%, #1c0903 100%);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+        .banner-blue {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        /* Hide scrollbar for horizontal scroll but allow scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
-<body class="text-slate-900">
-<!-- BEGIN: MainHeader -->
-<header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-<!-- Logo and Brand -->
-<div class="flex items-center gap-2">
-<a href="index.html" class="flex items-center space-x-2">
-  <img src="logo_mark.png" alt="Lumera" class="h-8 w-auto object-contain">
-  <span class="text-xl font-bold tracking-tight text-gray-900 font-sans">Lumera</span>
-</a>
-</div>
-<!-- Nav Links -->
-<nav class="hidden md:flex space-x-8">
-<a class="text-slate-600 hover:text-primary font-medium" href="#">Explore</a>
-<a class="text-slate-600 hover:text-primary font-medium" href="#">Accreditation</a>
-<a class="text-slate-600 hover:text-primary font-medium" href="#">For Businesses</a>
-<a class="text-slate-600 hover:text-primary font-medium" href="about.html">About</a>
-</nav>
-<!-- User Actions -->
-<div class="flex items-center gap-2 md:gap-4">
-<button class="hidden sm:block text-slate-600 hover:text-primary font-medium text-sm md:text-base">Log In</button>
-<button class="bg-primary text-white px-3 py-2 md:px-4 md:py-2 round-four font-medium hover:bg-blue-700 transition-colors text-sm md:text-base">Join Lumera</button>
-</div>
-</div>
-</header>
-<!-- END: MainHeader -->
-<main class="w-full">
-<!-- BEGIN: SearchSection -->
-<section class="relative mb-12 py-20 lg:py-32 bg-slate-900" data-purpose="hero-search">
-<!-- Background Image & Overlay -->
-<div class="absolute inset-0 z-0">
-  <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80" alt="Modern Home Background" class="w-full h-full object-cover opacity-60 mix-blend-overlay">
-  <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-teal-900/80"></div>
-</div>
+<body class="font-sans antialiased selection:bg-primary/30">
 
-<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="text-center mb-10">
-<h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Find Trusted Professionals</h2>
-<p class="mt-4 text-lg md:text-xl text-slate-200 max-w-2xl mx-auto">Discover accredited services for construction, weddings, and more.</p>
-</div>
-<!-- Main Search Bar -->
-<div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center bg-white rounded-3xl md:rounded-full overflow-hidden shadow-lg border border-gray-200 divide-y md:divide-y-0 md:divide-x divide-gray-200 relative">
+    <!-- Header -->
+    <header class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4 px-6 md:px-12">
+        <div class="max-w-[1400px] mx-auto flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2">
+                <img src="logo_mark.png" alt="Lumera" class="h-8 w-auto">
+                <span class="text-xl font-bold tracking-tight text-white">Lumera</span>
+            </a>
 
-        <!-- Service Input -->
-        <label class="flex-1 w-full md:w-auto px-6 py-3 md:py-4 hover:bg-gray-100 cursor-pointer transition-colors duration-200 group relative focus-within:bg-gray-100 focus-within:shadow-md focus-within:z-10">
-          <div class="text-xs font-bold text-gray-800 tracking-wide mb-1">What</div>
-          <input class="block w-full bg-transparent border-transparent focus:ring-0 focus:border-transparent text-gray-500 placeholder-gray-400 p-0 text-sm truncate" placeholder="Search services (e.g. Civil Engineer)" type="text"/>
-        </label>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#" class="hover:text-white transition-colors">Explore</a>
+                <a href="#" class="hover:text-white transition-colors">How It Works</a>
+                <a href="#" class="hover:text-white transition-colors">For Suppliers</a>
+            </nav>
 
-        <!-- Location Input -->
-        <label class="flex-1 w-full md:w-auto px-6 py-3 md:py-4 hover:bg-gray-100 cursor-pointer transition-colors duration-200 group relative focus-within:bg-gray-100 focus-within:shadow-md focus-within:z-10">
-          <div class="text-xs font-bold text-gray-800 tracking-wide mb-1">Where</div>
-          <input class="block w-full bg-transparent border-transparent focus:ring-0 focus:border-transparent text-gray-500 placeholder-gray-400 p-0 text-sm truncate" placeholder="Search destinations" type="text"/>
-        </label>
-
-        <!-- Search Button Container -->
-        <div class="p-2 md:pr-2 w-full md:w-auto flex justify-end bg-white">
-          <button class="bg-primary text-white p-3 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center shadow-sm w-full md:w-auto md:aspect-square">
-            <svg class="h-5 w-5 stroke-[3px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-            <span class="ml-2 font-bold md:hidden">Search</span>
-          </button>
+            <div class="flex items-center gap-4">
+                <button class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Log In</button>
+            </div>
         </div>
-      </div>
+    </header>
 
-      <!-- Shortcuts Section -->
-      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        <!-- Construction -->
-        <a href="#" class="bg-slate-900/40 backdrop-blur-md border border-slate-400/30 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:bg-slate-900/60 transition-colors duration-300 shadow-xl group cursor-pointer">
-          <div class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-          </div>
-          <h3 class="text-white font-bold text-lg mb-2">Construction</h3>
-          <p class="text-slate-300 text-sm">Specialist services and construction</p>
-        </a>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-48 md:pt-40 md:pb-64 hero-gradient">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 tracking-tight">
+                    Find Trusted <br />
+                    Wedding Suppliers—<br />
+                    All in One Place
+                </h1>
+                <p class="text-lg text-slate-300 mb-2 font-medium">
+                    Verified. Reviewed. Ready to book.
+                </p>
+                <p class="text-sm text-slate-400">
+                    Hindi ka na maloloko—verified lahat.
+                </p>
+            </div>
+        </div>
+    </section>
 
-        <!-- Weddings -->
-        <a href="#" class="bg-slate-900/40 backdrop-blur-md border border-slate-400/30 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:bg-slate-900/60 transition-colors duration-300 shadow-xl group cursor-pointer">
-          <div class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-          </div>
-          <h3 class="text-white font-bold text-lg mb-2">Weddings</h3>
-          <p class="text-slate-300 text-sm">Bespoke arrangements for weddings & events</p>
-        </a>
+    <!-- Floating Search Bar -->
+    <div class="max-w-[1100px] mx-auto px-4 sm:px-6 relative -mt-24 z-20 mb-20">
+        <div class="search-bar-glass rounded-3xl p-4 md:p-6">
+            <div class="flex flex-col md:flex-row items-end gap-4">
+                <div class="flex-1 w-full">
+                    <label class="block text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider pl-1">What are you looking for?</label>
+                    <div class="relative flex items-center bg-dark/50 border border-border rounded-xl px-4 py-3 focus-within:border-slate-500 transition-colors">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-4"></i>
+                        <input type="text" placeholder="Photographer, Venue, Makeup, Host..." class="bg-transparent border-none w-full text-sm text-white focus:outline-none pl-8 placeholder:text-slate-500">
+                    </div>
+                </div>
 
-        <!-- Home Repair -->
-        <a href="#" class="bg-slate-900/40 backdrop-blur-md border border-slate-400/30 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:bg-slate-900/60 transition-colors duration-300 shadow-xl group cursor-pointer">
-          <div class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-          </div>
-          <h3 class="text-white font-bold text-lg mb-2">Home Repair</h3>
-          <p class="text-slate-300 text-sm">Top destinations for home repairs</p>
-        </a>
-      </div>
+                <div class="w-full md:w-64">
+                    <label class="block text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider pl-1">Location</label>
+                    <div class="relative flex items-center bg-dark/50 border border-border rounded-xl px-4 py-3 focus-within:border-slate-500 transition-colors cursor-pointer">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-blue-400 absolute left-4"></i>
+                        <select class="bg-transparent border-none w-full text-sm text-white focus:outline-none pl-8 appearance-none cursor-pointer">
+                            <option value="metro-manila">Metro Manila</option>
+                            <option value="cebu">Cebu</option>
+                            <option value="davao">Davao</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 absolute right-4 pointer-events-none"></i>
+                    </div>
+                </div>
 
-</div>
-</section>
-<!-- END: SearchSection -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8">
-<!-- BEGIN: ResultsGrid -->
-<section class="w-full">
-<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 mb-6">
-<div class="flex items-center gap-4">
-<button onclick="document.getElementById('filters-sidebar').classList.toggle('hidden')" class="flex items-center gap-2 border border-slate-300 round-four px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-Filters
-</button>
-<p class="text-slate-500 font-medium">Showing <span class="text-slate-900 font-bold">124</span> results</p>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-sm text-slate-500">Sort by:</span>
-<select class="border-none bg-transparent font-semibold text-slate-900 focus:ring-0 cursor-pointer px-0">
-<option>Recommended</option>
-<option>Highest Rated</option>
-<option>Newest</option>
-</select>
-</div>
-</div>
-<!-- BEGIN: FilterBar -->
-<aside id="filters-sidebar" class="hidden w-full bg-white border border-slate-200 round-four p-4 shadow-sm mb-6" data-purpose="discovery-filters">
-  <div class="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center">
+                <div class="w-full md:w-64">
+                    <label class="block text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider pl-1">Date (Optional)</label>
+                    <div class="relative flex items-center bg-dark/50 border border-border rounded-xl px-4 py-3 focus-within:border-slate-500 transition-colors cursor-pointer">
+                        <i data-lucide="calendar" class="w-4 h-4 text-slate-400 absolute left-4"></i>
+                        <input type="text" placeholder="Add Date" class="bg-transparent border-none w-full text-sm text-white focus:outline-none pl-8 placeholder:text-slate-500">
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 absolute right-4"></i>
+                    </div>
+                </div>
 
-    <!-- Category Filter -->
-    <div class="flex-1 min-w-[200px]">
-      <h3 class="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-3">Categories</h3>
-      <div class="flex flex-wrap gap-3">
-        <label class="flex items-center bg-slate-50 px-3 py-1.5 round-four border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
-          <input checked="" class="round-four text-primary border-slate-300 focus:ring-primary" type="checkbox"/>
-          <span class="ml-2 text-sm text-slate-700 font-medium">All</span>
-        </label>
-        <label class="flex items-center bg-slate-50 px-3 py-1.5 round-four border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
-          <input class="round-four text-primary border-slate-300 focus:ring-primary" type="checkbox"/>
-          <span class="ml-2 text-sm text-slate-700 font-medium">Construction</span>
-        </label>
-        <label class="flex items-center bg-slate-50 px-3 py-1.5 round-four border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
-          <input class="round-four text-primary border-slate-300 focus:ring-primary" type="checkbox"/>
-          <span class="ml-2 text-sm text-slate-700 font-medium">Weddings</span>
-        </label>
-        <label class="flex items-center bg-slate-50 px-3 py-1.5 round-four border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
-          <input class="round-four text-primary border-slate-300 focus:ring-primary" type="checkbox"/>
-          <span class="ml-2 text-sm text-slate-700 font-medium">Suppliers</span>
-        </label>
-      </div>
+                <button class="w-full md:w-auto btn-gradient text-white font-semibold py-3 px-8 rounded-xl shadow-lg shadow-purple-500/20 text-sm h-[46px] flex-shrink-0">
+                    Search
+                </button>
+            </div>
+
+            <!-- Categories -->
+            <div class="flex items-center gap-2 mt-6 overflow-x-auto hide-scrollbar pb-2">
+                <button class="flex items-center gap-2 px-4 py-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 text-white text-xs font-medium whitespace-nowrap hover:bg-yellow-500/20 transition-colors">
+                    <i data-lucide="camera" class="w-3.5 h-3.5 text-blue-400"></i> Photography
+                </button>
+                <button class="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-dark/50 text-slate-300 text-xs font-medium whitespace-nowrap hover:bg-border transition-colors">
+                    <span class="text-pink-400">✨</span> Styling
+                </button>
+                <button class="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-dark/50 text-slate-300 text-xs font-medium whitespace-nowrap hover:bg-border transition-colors">
+                    <i data-lucide="mic" class="w-3.5 h-3.5 text-blue-400"></i> Host
+                </button>
+                <button class="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-dark/50 text-slate-300 text-xs font-medium whitespace-nowrap hover:bg-border transition-colors">
+                    <i data-lucide="utensils" class="w-3.5 h-3.5 text-blue-400"></i> Catering
+                </button>
+                <button class="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-dark/50 text-slate-300 text-xs font-medium whitespace-nowrap hover:bg-border transition-colors">
+                    <i data-lucide="music" class="w-3.5 h-3.5 text-orange-400"></i> Band / DJ
+                </button>
+            </div>
+        </div>
     </div>
 
-    <!-- Accreditation Status -->
-    <div class="flex-1 min-w-[200px]">
-      <h3 class="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-3">Accreditation</h3>
-      <div class="flex flex-wrap gap-3">
-        <label class="flex items-center cursor-pointer">
-          <input checked="" class="text-primary border-slate-300 focus:ring-primary" name="acc" type="radio"/>
-          <span class="ml-2 text-sm text-slate-600">Any</span>
-        </label>
-        <label class="flex items-center cursor-pointer">
-          <input class="text-primary border-slate-300 focus:ring-primary" name="acc" type="radio"/>
-          <span class="ml-2 text-sm text-slate-600">Verified</span>
-        </label>
-        <label class="flex items-center cursor-pointer">
-          <input class="text-primary border-slate-300 focus:ring-primary" name="acc" type="radio"/>
-          <span class="ml-2 text-sm text-slate-600">Premium</span>
-        </label>
-      </div>
+    <!-- Main Content -->
+    <main class="max-w-[1400px] mx-auto px-6 md:px-12 pb-24 space-y-24">
+
+        <!-- Why Couples Trust Lumera -->
+        <section>
+            <h2 class="text-xl font-bold mb-8">Why Couples Trust Lumera</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Trust Card 1 -->
+                <div class="bg-card border border-border rounded-2xl p-6 text-center hover:bg-cardhover transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center mx-auto mb-4 border border-emerald-500/20">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2 text-sm">Verified Suppliers</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">Lahat ng suppliers ay verified.</p>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] font-medium text-blue-400">
+                        <img src="logo_mark.png" alt="Lumera" class="w-3 h-3">
+                        Lumera Verified
+                    </div>
+                </div>
+
+                <!-- Trust Card 2 -->
+                <div class="bg-card border border-border rounded-2xl p-6 text-center hover:bg-cardhover transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center mx-auto mb-4 border border-orange-500/20">
+                        <i data-lucide="star" class="w-6 h-6 text-orange-400 fill-orange-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2 text-sm">Real Reviews</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Tunay na feedback from real couples.</p>
+                </div>
+
+                <!-- Trust Card 3 -->
+                <div class="bg-card border border-border rounded-2xl p-6 text-center hover:bg-cardhover transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mx-auto mb-4 border border-blue-500/20">
+                        <i data-lucide="message-square-text" class="w-6 h-6 text-blue-400 fill-blue-400/20"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2 text-sm">Direct Messaging</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Message suppliers no agad.</p>
+                </div>
+
+                <!-- Trust Card 4 -->
+                <div class="bg-card border border-border rounded-2xl p-6 text-center hover:bg-cardhover transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center mx-auto mb-4 border border-emerald-500/20">
+                        <i data-lucide="calendar-check" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2 text-sm">Easy Booking</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Secure & hassle-free booking.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explore Top Suppliers -->
+        <section class="relative">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold">Explore Top Suppliers</h2>
+                <a href="#" class="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">View All</a>
+            </div>
+
+            <div class="flex gap-6 overflow-x-auto hide-scrollbar pb-4 -mx-6 px-6 md:mx-0 md:px-0">
+                <!-- Supplier 1 -->
+                <a href="supplier-details.html" class="min-w-[280px] w-[280px] block bg-card border border-border rounded-2xl overflow-hidden group cursor-pointer hover:border-slate-600 transition-colors">
+                    <div class="relative h-40">
+                        <img src="https://images.unsplash.com/photo-1554046920-90dcac471c26?auto=format&fit=crop&q=80&w=600" alt="Snapshots by Gio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 bg-dark/80 backdrop-blur text-[10px] font-medium px-2 py-1 rounded-md text-slate-300 border border-border">
+                            Top Photographers
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-dark/50 backdrop-blur flex items-center justify-center border border-border hover:bg-dark transition-colors text-slate-400 hover:text-pink-500">
+                            <i data-lucide="heart" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-start justify-between gap-2 mb-1">
+                            <h3 class="font-bold text-white leading-tight">Snapshots by Gio</h3>
+                            <div class="flex-shrink-0 bg-emerald-500/20 text-emerald-400 text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1 uppercase tracking-wider">
+                                <i data-lucide="check" class="w-2.5 h-2.5"></i> Verified
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5 mb-3 text-xs">
+                            <i data-lucide="star" class="w-3.5 h-3.5 text-orange-400 fill-orange-400"></i>
+                            <span class="font-bold text-white">4.9</span>
+                            <span class="text-slate-500">(128 reviews)</span>
+                        </div>
+                        <div class="text-xs text-slate-400 pt-3 border-t border-border">
+                            Starting at ₱25,000
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 mt-auto flex items-center justify-between border-t border-border pt-3 mt-3">
+        <span class="text-brand text-sm font-medium">View Profile</span>
+        <i data-lucide="arrow-right" class="w-4 h-4 text-brand"></i>
     </div>
+</a>
 
-    <!-- Rating Filter -->
-    <div class="w-full md:w-auto min-w-[150px]">
-      <h3 class="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-3">Minimum Rating</h3>
-      <select class="w-full border-slate-300 round-four text-sm text-slate-600 focus:ring-primary focus:border-primary py-2 cursor-pointer shadow-sm">
-        <option>4.0+ Stars</option>
-        <option>4.5+ Stars</option>
-        <option>3.0+ Stars</option>
-      </select>
+                <!-- Supplier 2 -->
+                <a href="supplier-details.html" class="min-w-[280px] w-[280px] block bg-card border border-border rounded-2xl overflow-hidden group cursor-pointer hover:border-slate-600 transition-colors">
+                    <div class="relative h-40">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=600" alt="The Gardens" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 bg-dark/80 backdrop-blur text-[10px] font-medium px-2 py-1 rounded-md text-slate-300 border border-border flex items-center gap-1">
+                            <i data-lucide="star" class="w-3 h-3 text-orange-400 fill-orange-400"></i> Popular Venues
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-dark/50 backdrop-blur flex items-center justify-center border border-border hover:bg-dark transition-colors text-slate-400 hover:text-pink-500">
+                            <i data-lucide="heart" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-start justify-between gap-2 mb-1">
+                            <h3 class="font-bold text-white leading-tight">The Gardens<br>Event Place</h3>
+                            <div class="flex-shrink-0 bg-emerald-500/20 text-emerald-400 text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1 uppercase tracking-wider">
+                                <i data-lucide="check" class="w-2.5 h-2.5"></i> Verified
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5 mb-3 text-xs">
+                            <i data-lucide="star" class="w-3.5 h-3.5 text-orange-400 fill-orange-400"></i>
+                            <span class="font-bold text-white">4.8</span>
+                            <span class="text-slate-500">(96 reviews)</span>
+                        </div>
+                        <div class="text-xs text-slate-400 pt-3 border-t border-border">
+                            Starting at ₱80,000
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 mt-auto flex items-center justify-between border-t border-border pt-3 mt-3">
+        <span class="text-brand text-sm font-medium">View Profile</span>
+        <i data-lucide="arrow-right" class="w-4 h-4 text-brand"></i>
     </div>
-  </div>
-</aside>
-<!-- END: FilterBar -->
-<!-- Grid Container -->
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-<!-- Provider Card 1 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Modern Construction Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcGaJNFghl2JjBsRKszgzNX4ilKiBjF62JggQq5qVA0gTZp92GbhdUNS8sOCp8wT5PoZ7_Ujfr_60_Iypc31_gH9LMUA0w7dCkZwxC5-N3A3MY2MpwqQWLrC3uL9LUhDVhcf2pcLWLyWin_2bAt0MaOKFlSYg47diufdw36iCnhtmZzcUQZDRKSWmepBqs31unDSKz5klPdOukXkyt7gAER0KoKCNRz4RJatbS5i_6vwUscT0WndV7VotPnAU_PdGy-McVkUOjinA"/>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-primary flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M2.166 4.9L9.03 9.069a1.003 1.003 0 00.94 0l6.864-4.17A1 1 0 0016 3.235V3H4v.235a1 1 0 00-.834.665zM18 8v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8l7.03 4.26a2 2 0 001.94 0L18 8z" fill-rule="evenodd"></path></svg>
-                VERIFIED
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Apex Construction Ltd</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.9</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Specializing in sustainable residential projects and luxury modern renovations across the metropolitan area.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Residential</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Eco-Friendly</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  London, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
+</a>
 
-<!-- Provider Card 2 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Petals &amp; Prose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcOrxwdFyLXnTbc0VCvBU75nIwQ4qmafXSOMJlUE103xsn1MIhIw2w7Uftmo4zM4FKnFhUEjkQVM1luiYqiELH_JY9fbHLF24jTD4V84WcoV5A3-6cAM5iKT_egnOlHmDe5fZuDULJZUaMS5aEubRI8mm-6wEq4972wLEFwXQERBmkWHugcLI2Teqqo5kQ5EKYsdpYwmcjplbZUEFI7up7mppnAKWJUFWK6WIly4OLWthxLZdHpzjy8zPCDWeSMavP9XURg4f6ZnM"/>
-<div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-white flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path clip-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" fill-rule="evenodd"></path></svg>
-                PREMIUM
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Petals &amp; Prose</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.8</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Bespoke floral arrangements for high-end weddings and corporate events. Award-winning design team.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Weddings</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Luxury</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Manchester, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 3 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Urban Supply Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtFgS2UChow2epW7bi83eURDIZuGJz-v-KqCBgIeXlhH78G7MlJFpiCBag8Dh0lAL9d6cTj9i8NGnchHmLBXrn9YZyZbSoDxt2z0fddal4dAO08jgAcnBuHcXTuvxtKm9HXjCfJodFn6-gLSFncXHPj-9FjuniiR3ej1umym88mKgIGREfx2q8SyenqPwKJrUj52g5rk3byc9gF_Et0WHqJdRbyANscIOrovb5pJF4-KSoOlnwnmv2sf_GgYFcbIK247AsiXkq5w"/>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Urban Supply Co.</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.5</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Your one-stop destination for premium building materials and industrial hardware supplies.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Suppliers</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Wholesale</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Birmingham, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 4 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Modern Construction Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcGaJNFghl2JjBsRKszgzNX4ilKiBjF62JggQq5qVA0gTZp92GbhdUNS8sOCp8wT5PoZ7_Ujfr_60_Iypc31_gH9LMUA0w7dCkZwxC5-N3A3MY2MpwqQWLrC3uL9LUhDVhcf2pcLWLyWin_2bAt0MaOKFlSYg47diufdw36iCnhtmZzcUQZDRKSWmepBqs31unDSKz5klPdOukXkyt7gAER0KoKCNRz4RJatbS5i_6vwUscT0WndV7VotPnAU_PdGy-McVkUOjinA"/>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-primary flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M2.166 4.9L9.03 9.069a1.003 1.003 0 00.94 0l6.864-4.17A1 1 0 0016 3.235V3H4v.235a1 1 0 00-.834.665zM18 8v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8l7.03 4.26a2 2 0 001.94 0L18 8z" fill-rule="evenodd"></path></svg>
-                VERIFIED
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Apex Construction Ltd</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.9</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Specializing in sustainable residential projects and luxury modern renovations across the metropolitan area.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Residential</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Eco-Friendly</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  London, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 5 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Petals &amp; Prose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcOrxwdFyLXnTbc0VCvBU75nIwQ4qmafXSOMJlUE103xsn1MIhIw2w7Uftmo4zM4FKnFhUEjkQVM1luiYqiELH_JY9fbHLF24jTD4V84WcoV5A3-6cAM5iKT_egnOlHmDe5fZuDULJZUaMS5aEubRI8mm-6wEq4972wLEFwXQERBmkWHugcLI2Teqqo5kQ5EKYsdpYwmcjplbZUEFI7up7mppnAKWJUFWK6WIly4OLWthxLZdHpzjy8zPCDWeSMavP9XURg4f6ZnM"/>
-<div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-white flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path clip-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" fill-rule="evenodd"></path></svg>
-                PREMIUM
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Petals &amp; Prose</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.8</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Bespoke floral arrangements for high-end weddings and corporate events. Award-winning design team.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Weddings</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Luxury</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Manchester, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 6 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Urban Supply Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtFgS2UChow2epW7bi83eURDIZuGJz-v-KqCBgIeXlhH78G7MlJFpiCBag8Dh0lAL9d6cTj9i8NGnchHmLBXrn9YZyZbSoDxt2z0fddal4dAO08jgAcnBuHcXTuvxtKm9HXjCfJodFn6-gLSFncXHPj-9FjuniiR3ej1umym88mKgIGREfx2q8SyenqPwKJrUj52g5rk3byc9gF_Et0WHqJdRbyANscIOrovb5pJF4-KSoOlnwnmv2sf_GgYFcbIK247AsiXkq5w"/>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Urban Supply Co.</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.5</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Your one-stop destination for premium building materials and industrial hardware supplies.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Suppliers</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Wholesale</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Birmingham, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 7 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Modern Construction Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcGaJNFghl2JjBsRKszgzNX4ilKiBjF62JggQq5qVA0gTZp92GbhdUNS8sOCp8wT5PoZ7_Ujfr_60_Iypc31_gH9LMUA0w7dCkZwxC5-N3A3MY2MpwqQWLrC3uL9LUhDVhcf2pcLWLyWin_2bAt0MaOKFlSYg47diufdw36iCnhtmZzcUQZDRKSWmepBqs31unDSKz5klPdOukXkyt7gAER0KoKCNRz4RJatbS5i_6vwUscT0WndV7VotPnAU_PdGy-McVkUOjinA"/>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-primary flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M2.166 4.9L9.03 9.069a1.003 1.003 0 00.94 0l6.864-4.17A1 1 0 0016 3.235V3H4v.235a1 1 0 00-.834.665zM18 8v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8l7.03 4.26a2 2 0 001.94 0L18 8z" fill-rule="evenodd"></path></svg>
-                VERIFIED
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Apex Construction Ltd</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.9</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Specializing in sustainable residential projects and luxury modern renovations across the metropolitan area.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Residential</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Eco-Friendly</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  London, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 8 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Petals &amp; Prose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcOrxwdFyLXnTbc0VCvBU75nIwQ4qmafXSOMJlUE103xsn1MIhIw2w7Uftmo4zM4FKnFhUEjkQVM1luiYqiELH_JY9fbHLF24jTD4V84WcoV5A3-6cAM5iKT_egnOlHmDe5fZuDULJZUaMS5aEubRI8mm-6wEq4972wLEFwXQERBmkWHugcLI2Teqqo5kQ5EKYsdpYwmcjplbZUEFI7up7mppnAKWJUFWK6WIly4OLWthxLZdHpzjy8zPCDWeSMavP9XURg4f6ZnM"/>
-<div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-white flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path clip-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" fill-rule="evenodd"></path></svg>
-                PREMIUM
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Petals &amp; Prose</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.8</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Bespoke floral arrangements for high-end weddings and corporate events. Award-winning design team.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Weddings</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Luxury</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Manchester, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 9 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Urban Supply Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtFgS2UChow2epW7bi83eURDIZuGJz-v-KqCBgIeXlhH78G7MlJFpiCBag8Dh0lAL9d6cTj9i8NGnchHmLBXrn9YZyZbSoDxt2z0fddal4dAO08jgAcnBuHcXTuvxtKm9HXjCfJodFn6-gLSFncXHPj-9FjuniiR3ej1umym88mKgIGREfx2q8SyenqPwKJrUj52g5rk3byc9gF_Et0WHqJdRbyANscIOrovb5pJF4-KSoOlnwnmv2sf_GgYFcbIK247AsiXkq5w"/>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Urban Supply Co.</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.5</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Your one-stop destination for premium building materials and industrial hardware supplies.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Suppliers</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Wholesale</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Birmingham, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 10 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Modern Construction Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcGaJNFghl2JjBsRKszgzNX4ilKiBjF62JggQq5qVA0gTZp92GbhdUNS8sOCp8wT5PoZ7_Ujfr_60_Iypc31_gH9LMUA0w7dCkZwxC5-N3A3MY2MpwqQWLrC3uL9LUhDVhcf2pcLWLyWin_2bAt0MaOKFlSYg47diufdw36iCnhtmZzcUQZDRKSWmepBqs31unDSKz5klPdOukXkyt7gAER0KoKCNRz4RJatbS5i_6vwUscT0WndV7VotPnAU_PdGy-McVkUOjinA"/>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-primary flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M2.166 4.9L9.03 9.069a1.003 1.003 0 00.94 0l6.864-4.17A1 1 0 0016 3.235V3H4v.235a1 1 0 00-.834.665zM18 8v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8l7.03 4.26a2 2 0 001.94 0L18 8z" fill-rule="evenodd"></path></svg>
-                VERIFIED
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Apex Construction Ltd</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.9</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Specializing in sustainable residential projects and luxury modern renovations across the metropolitan area.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Residential</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Eco-Friendly</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  London, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 11 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Petals &amp; Prose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcOrxwdFyLXnTbc0VCvBU75nIwQ4qmafXSOMJlUE103xsn1MIhIw2w7Uftmo4zM4FKnFhUEjkQVM1luiYqiELH_JY9fbHLF24jTD4V84WcoV5A3-6cAM5iKT_egnOlHmDe5fZuDULJZUaMS5aEubRI8mm-6wEq4972wLEFwXQERBmkWHugcLI2Teqqo5kQ5EKYsdpYwmcjplbZUEFI7up7mppnAKWJUFWK6WIly4OLWthxLZdHpzjy8zPCDWeSMavP9XURg4f6ZnM"/>
-<div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-white flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path clip-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" fill-rule="evenodd"></path></svg>
-                PREMIUM
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Petals &amp; Prose</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.8</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Bespoke floral arrangements for high-end weddings and corporate events. Award-winning design team.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Weddings</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Luxury</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Manchester, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 12 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Urban Supply Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtFgS2UChow2epW7bi83eURDIZuGJz-v-KqCBgIeXlhH78G7MlJFpiCBag8Dh0lAL9d6cTj9i8NGnchHmLBXrn9YZyZbSoDxt2z0fddal4dAO08jgAcnBuHcXTuvxtKm9HXjCfJodFn6-gLSFncXHPj-9FjuniiR3ej1umym88mKgIGREfx2q8SyenqPwKJrUj52g5rk3byc9gF_Et0WHqJdRbyANscIOrovb5pJF4-KSoOlnwnmv2sf_GgYFcbIK247AsiXkq5w"/>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Urban Supply Co.</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.5</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Your one-stop destination for premium building materials and industrial hardware supplies.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Suppliers</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Wholesale</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Birmingham, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 13 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Modern Construction Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcGaJNFghl2JjBsRKszgzNX4ilKiBjF62JggQq5qVA0gTZp92GbhdUNS8sOCp8wT5PoZ7_Ujfr_60_Iypc31_gH9LMUA0w7dCkZwxC5-N3A3MY2MpwqQWLrC3uL9LUhDVhcf2pcLWLyWin_2bAt0MaOKFlSYg47diufdw36iCnhtmZzcUQZDRKSWmepBqs31unDSKz5klPdOukXkyt7gAER0KoKCNRz4RJatbS5i_6vwUscT0WndV7VotPnAU_PdGy-McVkUOjinA"/>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-primary flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M2.166 4.9L9.03 9.069a1.003 1.003 0 00.94 0l6.864-4.17A1 1 0 0016 3.235V3H4v.235a1 1 0 00-.834.665zM18 8v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8l7.03 4.26a2 2 0 001.94 0L18 8z" fill-rule="evenodd"></path></svg>
-                VERIFIED
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Apex Construction Ltd</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.9</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Specializing in sustainable residential projects and luxury modern renovations across the metropolitan area.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Residential</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Eco-Friendly</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  London, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 14 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Petals &amp; Prose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcOrxwdFyLXnTbc0VCvBU75nIwQ4qmafXSOMJlUE103xsn1MIhIw2w7Uftmo4zM4FKnFhUEjkQVM1luiYqiELH_JY9fbHLF24jTD4V84WcoV5A3-6cAM5iKT_egnOlHmDe5fZuDULJZUaMS5aEubRI8mm-6wEq4972wLEFwXQERBmkWHugcLI2Teqqo5kQ5EKYsdpYwmcjplbZUEFI7up7mppnAKWJUFWK6WIly4OLWthxLZdHpzjy8zPCDWeSMavP9XURg4f6ZnM"/>
-<div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-white flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path clip-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" fill-rule="evenodd"></path></svg>
-                PREMIUM
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Petals &amp; Prose</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.8</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Bespoke floral arrangements for high-end weddings and corporate events. Award-winning design team.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Weddings</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Luxury</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Manchester, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 15 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Urban Supply Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtFgS2UChow2epW7bi83eURDIZuGJz-v-KqCBgIeXlhH78G7MlJFpiCBag8Dh0lAL9d6cTj9i8NGnchHmLBXrn9YZyZbSoDxt2z0fddal4dAO08jgAcnBuHcXTuvxtKm9HXjCfJodFn6-gLSFncXHPj-9FjuniiR3ej1umym88mKgIGREfx2q8SyenqPwKJrUj52g5rk3byc9gF_Et0WHqJdRbyANscIOrovb5pJF4-KSoOlnwnmv2sf_GgYFcbIK247AsiXkq5w"/>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Urban Supply Co.</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.5</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Your one-stop destination for premium building materials and industrial hardware supplies.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Suppliers</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Wholesale</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Birmingham, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 16 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Modern Construction Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcGaJNFghl2JjBsRKszgzNX4ilKiBjF62JggQq5qVA0gTZp92GbhdUNS8sOCp8wT5PoZ7_Ujfr_60_Iypc31_gH9LMUA0w7dCkZwxC5-N3A3MY2MpwqQWLrC3uL9LUhDVhcf2pcLWLyWin_2bAt0MaOKFlSYg47diufdw36iCnhtmZzcUQZDRKSWmepBqs31unDSKz5klPdOukXkyt7gAER0KoKCNRz4RJatbS5i_6vwUscT0WndV7VotPnAU_PdGy-McVkUOjinA"/>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-primary flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M2.166 4.9L9.03 9.069a1.003 1.003 0 00.94 0l6.864-4.17A1 1 0 0016 3.235V3H4v.235a1 1 0 00-.834.665zM18 8v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8l7.03 4.26a2 2 0 001.94 0L18 8z" fill-rule="evenodd"></path></svg>
-                VERIFIED
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Apex Construction Ltd</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.9</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Specializing in sustainable residential projects and luxury modern renovations across the metropolitan area.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Residential</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Eco-Friendly</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  London, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 17 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Petals &amp; Prose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcOrxwdFyLXnTbc0VCvBU75nIwQ4qmafXSOMJlUE103xsn1MIhIw2w7Uftmo4zM4FKnFhUEjkQVM1luiYqiELH_JY9fbHLF24jTD4V84WcoV5A3-6cAM5iKT_egnOlHmDe5fZuDULJZUaMS5aEubRI8mm-6wEq4972wLEFwXQERBmkWHugcLI2Teqqo5kQ5EKYsdpYwmcjplbZUEFI7up7mppnAKWJUFWK6WIly4OLWthxLZdHpzjy8zPCDWeSMavP9XURg4f6ZnM"/>
-<div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-white flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path clip-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" fill-rule="evenodd"></path></svg>
-                PREMIUM
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Petals &amp; Prose</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.8</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Bespoke floral arrangements for high-end weddings and corporate events. Award-winning design team.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Weddings</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Luxury</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Manchester, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 18 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Urban Supply Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtFgS2UChow2epW7bi83eURDIZuGJz-v-KqCBgIeXlhH78G7MlJFpiCBag8Dh0lAL9d6cTj9i8NGnchHmLBXrn9YZyZbSoDxt2z0fddal4dAO08jgAcnBuHcXTuvxtKm9HXjCfJodFn6-gLSFncXHPj-9FjuniiR3ej1umym88mKgIGREfx2q8SyenqPwKJrUj52g5rk3byc9gF_Et0WHqJdRbyANscIOrovb5pJF4-KSoOlnwnmv2sf_GgYFcbIK247AsiXkq5w"/>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Urban Supply Co.</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.5</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Your one-stop destination for premium building materials and industrial hardware supplies.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Suppliers</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Wholesale</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Birmingham, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 19 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Modern Construction Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcGaJNFghl2JjBsRKszgzNX4ilKiBjF62JggQq5qVA0gTZp92GbhdUNS8sOCp8wT5PoZ7_Ujfr_60_Iypc31_gH9LMUA0w7dCkZwxC5-N3A3MY2MpwqQWLrC3uL9LUhDVhcf2pcLWLyWin_2bAt0MaOKFlSYg47diufdw36iCnhtmZzcUQZDRKSWmepBqs31unDSKz5klPdOukXkyt7gAER0KoKCNRz4RJatbS5i_6vwUscT0WndV7VotPnAU_PdGy-McVkUOjinA"/>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-primary flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M2.166 4.9L9.03 9.069a1.003 1.003 0 00.94 0l6.864-4.17A1 1 0 0016 3.235V3H4v.235a1 1 0 00-.834.665zM18 8v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8l7.03 4.26a2 2 0 001.94 0L18 8z" fill-rule="evenodd"></path></svg>
-                VERIFIED
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Apex Construction Ltd</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.9</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Specializing in sustainable residential projects and luxury modern renovations across the metropolitan area.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Residential</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Eco-Friendly</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  London, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 20 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Petals &amp; Prose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcOrxwdFyLXnTbc0VCvBU75nIwQ4qmafXSOMJlUE103xsn1MIhIw2w7Uftmo4zM4FKnFhUEjkQVM1luiYqiELH_JY9fbHLF24jTD4V84WcoV5A3-6cAM5iKT_egnOlHmDe5fZuDULJZUaMS5aEubRI8mm-6wEq4972wLEFwXQERBmkWHugcLI2Teqqo5kQ5EKYsdpYwmcjplbZUEFI7up7mppnAKWJUFWK6WIly4OLWthxLZdHpzjy8zPCDWeSMavP9XURg4f6ZnM"/>
-<div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-white flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path clip-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" fill-rule="evenodd"></path></svg>
-                PREMIUM
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Petals &amp; Prose</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.8</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Bespoke floral arrangements for high-end weddings and corporate events. Award-winning design team.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Weddings</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Luxury</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Manchester, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-<!-- Provider Card 21 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Urban Supply Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtFgS2UChow2epW7bi83eURDIZuGJz-v-KqCBgIeXlhH78G7MlJFpiCBag8Dh0lAL9d6cTj9i8NGnchHmLBXrn9YZyZbSoDxt2z0fddal4dAO08jgAcnBuHcXTuvxtKm9HXjCfJodFn6-gLSFncXHPj-9FjuniiR3ej1umym88mKgIGREfx2q8SyenqPwKJrUj52g5rk3byc9gF_Et0WHqJdRbyANscIOrovb5pJF4-KSoOlnwnmv2sf_GgYFcbIK247AsiXkq5w"/>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Urban Supply Co.</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.5</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Your one-stop destination for premium building materials and industrial hardware supplies.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Suppliers</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Wholesale</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Birmingham, UK
-                </span>
-<a href="supplier-details.html" class="text-primary font-bold text-sm">View Profile</a>
-</div>
-</div>
-</article>
-
-
-</div>
-<!-- Pagination -->
-<div class="mt-12 flex items-center justify-center gap-2">
-<button class="w-10 h-10 flex items-center justify-center round-four border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-50" disabled="">←</button>
-<button class="w-10 h-10 flex items-center justify-center round-four bg-primary text-white font-bold">1</button>
-<button class="w-10 h-10 flex items-center justify-center round-four border border-slate-200 text-slate-600 hover:bg-slate-50">2</button>
-<button class="w-10 h-10 flex items-center justify-center round-four border border-slate-200 text-slate-600 hover:bg-slate-50">3</button>
-<button class="w-10 h-10 flex items-center justify-center round-four border border-slate-200 text-slate-600 hover:bg-slate-50">→</button>
-</div>
-</section>
-<!-- END: ResultsGrid -->
-</div>
-</main>
-<!-- BEGIN: MainFooter -->
-<footer class="bg-slate-900 text-slate-300 py-12 mt-20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-<div class="col-span-1 sm:col-span-2 lg:col-span-1">
-<h5 class="text-white font-bold mb-4">Lumera</h5>
-<p class="text-sm leading-relaxed">The global standard for service accreditation and professional discovery. Building trust, one connection at a time.</p>
-</div>
-<div>
-<h5 class="text-white font-bold mb-4">Resources</h5>
-<ul class="text-sm space-y-2">
-<li><a class="hover:text-white" href="#">Help Center</a></li>
-<li><a class="hover:text-white" href="#">Success Stories</a></li>
-<li><a class="hover:text-white" href="#">Safety &amp; Trust</a></li>
-</ul>
-</div>
-<div>
-<h5 class="text-white font-bold mb-4">Company</h5>
-<ul class="text-sm space-y-2">
-<li><a class="hover:text-white" href="#">About Us</a></li>
-<li><a class="hover:text-white" href="#">Careers</a></li>
-<li><a class="hover:text-white" href="#">Terms of Service</a></li>
-</ul>
-</div>
-<div>
-<h5 class="text-white font-bold mb-4">Newsletter</h5>
-<div class="flex flex-col sm:flex-row gap-2">
-<input class="bg-slate-800 border-none round-four w-full focus:ring-primary text-white text-sm" placeholder="Email" type="email"/>
-<button class="bg-primary px-4 py-2 round-four text-white font-bold text-sm w-full sm:w-auto text-center justify-center">Join</button>
-</div>
-</div>
-</div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-800 text-center text-xs">
-      © 2026 Lumera Inc. All rights reserved.
+                <!-- Supplier 3 -->
+                <a href="supplier-details.html" class="min-w-[280px] w-[280px] block bg-card border border-border rounded-2xl overflow-hidden group cursor-pointer hover:border-slate-600 transition-colors">
+                    <div class="relative h-40">
+                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=600" alt="Makeup by Claire" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 bg-dark/80 backdrop-blur text-[10px] font-medium px-2 py-1 rounded-md text-slate-300 border border-border flex items-center gap-1">
+                            <span class="text-blue-400 text-xs">◆</span> Budget-Friendly Picks
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-dark/50 backdrop-blur flex items-center justify-center border border-border hover:bg-dark transition-colors text-slate-400 hover:text-pink-500">
+                            <i data-lucide="heart" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-start justify-between gap-2 mb-1">
+                            <h3 class="font-bold text-white leading-tight">Makeup by Claire</h3>
+                            <div class="flex-shrink-0 bg-emerald-500/20 text-emerald-400 text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1 uppercase tracking-wider">
+                                <i data-lucide="check" class="w-2.5 h-2.5"></i> Verified
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5 mb-3 text-xs">
+                            <i data-lucide="star" class="w-3.5 h-3.5 text-orange-400 fill-orange-400"></i>
+                            <span class="font-bold text-white">4.9</span>
+                            <span class="text-slate-500">(74 reviews)</span>
+                        </div>
+                        <div class="text-xs text-slate-400 pt-3 border-t border-border">
+                            Starting at ₱6,500
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 mt-auto flex items-center justify-between border-t border-border pt-3 mt-3">
+        <span class="text-brand text-sm font-medium">View Profile</span>
+        <i data-lucide="arrow-right" class="w-4 h-4 text-brand"></i>
     </div>
-</footer>
-<!-- END: MainFooter -->
-</body></html>
+</a>
+
+                <!-- Supplier 4 -->
+                <a href="supplier-details.html" class="min-w-[280px] w-[280px] block bg-card border border-border rounded-2xl overflow-hidden group cursor-pointer hover:border-slate-600 transition-colors">
+                    <div class="relative h-40">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" alt="Manila Vibes Band" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 bg-dark/80 backdrop-blur text-[10px] font-medium px-2 py-1 rounded-md text-slate-300 border border-border flex items-center gap-1">
+                            <span class="text-orange-400 text-xs">★</span> Highlight
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-dark/50 backdrop-blur flex items-center justify-center border border-border hover:bg-dark transition-colors text-slate-400 hover:text-pink-500">
+                            <i data-lucide="heart" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-start justify-between gap-2 mb-1">
+                            <h3 class="font-bold text-white leading-tight">Manila Vibes Band</h3>
+                            <div class="flex-shrink-0 bg-emerald-500/20 text-emerald-400 text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1 uppercase tracking-wider">
+                                <i data-lucide="check" class="w-2.5 h-2.5"></i> Verified
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5 mb-3 text-xs">
+                            <i data-lucide="star" class="w-3.5 h-3.5 text-orange-400 fill-orange-400"></i>
+                            <span class="font-bold text-white">5.0</span>
+                            <span class="text-slate-500">(43 reviews)</span>
+                        </div>
+                        <div class="text-xs text-slate-400 pt-3 border-t border-border">
+                            Starting at ₱35,000
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 mt-auto flex items-center justify-between border-t border-border pt-3 mt-3">
+        <span class="text-brand text-sm font-medium">View Profile</span>
+        <i data-lucide="arrow-right" class="w-4 h-4 text-brand"></i>
+    </div>
+</a>
+            </div>
+
+            <!-- Filter Button -->
+            <button class="absolute bottom-4 right-0 bg-dark/90 backdrop-blur-sm border border-border px-4 py-2 rounded-xl text-sm font-medium hover:bg-card transition-colors flex items-center gap-2 shadow-2xl">
+                <i data-lucide="sliders-horizontal" class="w-4 h-4"></i> Filter
+            </button>
+        </section>
+
+        <!-- Promotional Banners -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- For Couples Banner -->
+            <div class="banner-orange rounded-3xl p-8 md:p-10 relative overflow-hidden flex flex-col justify-center min-h-[280px]">
+                <div class="relative z-10 max-w-[280px]">
+                    <div class="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center mb-4">
+                        <i data-lucide="heart" class="w-5 h-5 text-orange-400 fill-orange-400"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-2 leading-tight">Plan your dream wedding stress-free.</h2>
+                    <p class="text-sm text-orange-200/70 mb-6">Trusted suppliers, no surprises.</p>
+                    <button class="btn-orange-gradient text-white font-semibold py-2.5 px-6 rounded-xl text-sm w-fit">
+                        Start Planning
+                    </button>
+                </div>
+                <!-- Abstract elements / Image placeholder for couple -->
+                <div class="absolute right-0 bottom-0 h-[110%] w-[50%] md:w-[40%] bg-[url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center rounded-tl-full border-t-4 border-l-4 border-dark mask-image">
+                </div>
+            </div>
+
+            <!-- For Suppliers Banner -->
+            <div class="banner-blue rounded-3xl p-8 md:p-10 relative overflow-hidden flex flex-col justify-center min-h-[280px]">
+                <div class="relative z-10 ml-auto max-w-[280px]">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
+                        <i data-lucide="store" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-2 leading-tight">Get discovered by verified couples.</h2>
+                    <p class="text-sm text-blue-200/70 mb-6">Grow your business with Lumera.</p>
+                    <div class="flex gap-3">
+                        <button class="btn-blue-gradient text-white font-semibold py-2.5 px-6 rounded-xl text-sm">
+                            Join as Supplier
+                        </button>
+                        <button class="bg-transparent border border-blue-500/30 text-white font-semibold py-2.5 px-6 rounded-xl text-sm hover:bg-blue-500/10 transition-colors">
+                            Get Verified
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Sections -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
+            <!-- How It Works -->
+            <div>
+                <h2 class="text-xl font-bold mb-6">How It Works</h2>
+                <p class="text-sm text-slate-400 mb-8">Plan your wedding in 3 simple steps.</p>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-full bg-dark border border-border flex items-center justify-center flex-shrink-0 relative">
+                            <i data-lucide="search" class="w-5 h-5 text-blue-400"></i>
+                            <div class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center text-[10px] font-bold text-white border-2 border-dark">1</div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Search & Discover</h3>
+                            <p class="text-sm text-slate-400">Find the best suppliers for your budget and style.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-full bg-dark border border-border flex items-center justify-center flex-shrink-0 relative">
+                            <i data-lucide="book-open" class="w-5 h-5 text-pink-400"></i>
+                            <div class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-pink-500 flex items-center justify-center text-[10px] font-bold text-white border-2 border-dark">2</div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Compare Suppliers</h3>
+                            <p class="text-sm text-slate-400">Read reviews and check portfolios to choose the best.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-full bg-dark border border-border flex items-center justify-center flex-shrink-0 relative">
+                            <i data-lucide="calendar-check" class="w-5 h-5 text-purple-400"></i>
+                            <div class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-purple-500 flex items-center justify-center text-[10px] font-bold text-white border-2 border-dark">3</div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Book Securely</h3>
+                            <p class="text-sm text-slate-400">Finalize your booking with confidence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loved by Real Couples -->
+            <div>
+                <h2 class="text-xl font-bold mb-6">Loved by Real Couples</h2>
+                <div class="bg-card border border-border rounded-2xl p-6 relative">
+                    <i data-lucide="quote" class="w-8 h-8 text-slate-700 absolute top-6 left-6"></i>
+                    <div class="pl-12">
+                        <p class="text-sm text-slate-300 italic mb-4">"We found our photographer in 2 days! Super dali at reliable."</p>
+                        <div class="flex items-center gap-1 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 text-orange-400 fill-orange-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-orange-400 fill-orange-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-orange-400 fill-orange-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-orange-400 fill-orange-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-orange-400 fill-orange-400"></i>
+                        </div>
+                        <div class="flex items-center gap-3 mt-8 border-t border-border pt-4">
+                            <div class="w-10 h-10 rounded-full bg-slate-800 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=100" alt="Couple" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Mark & Sarah</h4>
+                                <p class="text-xs text-slate-500">Married on Feb 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-card border-t border-border py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-slate-400 text-sm">© 2026 Lumera Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
