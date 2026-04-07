@@ -82,7 +82,7 @@
     <!-- Header -->
     <header class="fixed w-full z-50 transition-all duration-300 bg-[#0B0B0F]/80 backdrop-blur border-b border-[#2A2A35] py-4 px-6 md:px-12">
         <div class="max-w-[1400px] mx-auto flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2">
+            <a href="index.html" class="flex items-center gap-2">
                 <img src="logo_mark.png" alt="Lumera" class="h-8 w-auto">
                 <span class="text-xl font-bold tracking-tight text-white">Lumera</span>
             </a>
@@ -280,5 +280,226 @@
     <script>
         lucide.createIcons();
     </script>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-dark/80 backdrop-blur-sm transition-opacity opacity-0" id="auth-backdrop" onclick="closeAuthModal()"></div>
+
+        <!-- Modal Content -->
+        <div class="relative w-full max-w-md bg-[#15151A] border border-white/10 rounded-2xl shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="auth-content">
+            <!-- Close Button -->
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors p-1 bg-white/5 hover:bg-white/10 rounded-full z-10">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Tabs -->
+            <div class="flex border-b border-white/10 relative">
+                <button onclick="switchAuthTab('login')" id="tab-login" class="flex-1 py-4 text-sm font-medium text-white bg-white/5 transition-colors">
+                    Log In
+                </button>
+                <button onclick="switchAuthTab('signup')" id="tab-signup" class="flex-1 py-4 text-sm font-medium text-slate-400 hover:text-white transition-colors">
+                    Sign Up
+                </button>
+                <!-- Active Indicator -->
+                <div id="tab-indicator" class="absolute bottom-0 left-0 w-1/2 h-0.5 bg-primary transition-transform duration-300"></div>
+            </div>
+
+            <div class="p-8">
+                <!-- Login Form -->
+                <div id="form-login" class="block animate-fade-in">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Welcome Back</h3>
+                        <p class="text-slate-400 text-sm">Enter your details to access your account.</p>
+                    </div>
+
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1.5">Email Address</label>
+                            <div class="relative">
+                                <i data-lucide="mail" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500"></i>
+                                <input type="email" class="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="you@example.com">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <label class="block text-sm font-medium text-slate-300">Password</label>
+                                <a href="#" class="text-xs text-primary hover:text-primary/80 transition-colors">Forgot password?</a>
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="lock" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500"></i>
+                                <input type="password" class="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="••••••••">
+                            </div>
+                        </div>
+                        <button type="button" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 rounded-xl transition-colors mt-2 shadow-lg shadow-primary/20">
+                            Log In
+                        </button>
+                    </form>
+
+                    <div class="mt-6 flex items-center justify-center gap-4">
+                        <div class="h-px bg-white/10 flex-1"></div>
+                        <span class="text-xs text-slate-500 uppercase tracking-wider">Or continue with</span>
+                        <div class="h-px bg-white/10 flex-1"></div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        <button class="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white py-2.5 rounded-xl transition-colors text-sm font-medium">
+                            Google
+                        </button>
+                        <button class="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white py-2.5 rounded-xl transition-colors text-sm font-medium">
+                            Facebook
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div id="form-signup" class="hidden">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Create an Account</h3>
+                        <p class="text-slate-400 text-sm">Join Lumera to start planning your dream wedding.</p>
+                    </div>
+
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-1.5">First Name</label>
+                                <input type="text" class="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 px-4 text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="Jane">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-1.5">Last Name</label>
+                                <input type="text" class="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 px-4 text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="Doe">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1.5">Email Address</label>
+                            <div class="relative">
+                                <i data-lucide="mail" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500"></i>
+                                <input type="email" class="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="you@example.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1.5">Password</label>
+                            <div class="relative">
+                                <i data-lucide="lock" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500"></i>
+                                <input type="password" class="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary/50 transition-colors" placeholder="Create a password">
+                            </div>
+                        </div>
+
+                        <!-- Account Type Selection -->
+                        <div class="pt-2">
+                            <label class="block text-sm font-medium text-slate-300 mb-2">I am signing up as a:</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="account_type" class="peer sr-only" checked>
+                                    <div class="text-center py-2.5 px-3 bg-white/5 border border-white/10 rounded-xl peer-checked:bg-primary/20 peer-checked:border-primary peer-checked:text-primary transition-colors text-sm font-medium text-slate-400">
+                                        Couple
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="account_type" class="peer sr-only">
+                                    <div class="text-center py-2.5 px-3 bg-white/5 border border-white/10 rounded-xl peer-checked:bg-primary/20 peer-checked:border-primary peer-checked:text-primary transition-colors text-sm font-medium text-slate-400">
+                                        Supplier
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="button" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 rounded-xl transition-colors mt-4 shadow-lg shadow-primary/20">
+                            Create Account
+                        </button>
+                    </form>
+
+                    <p class="mt-4 text-center text-xs text-slate-500">
+                        By signing up, you agree to our <a href="terms-of-service.html" class="text-primary hover:underline">Terms of Service</a> and <a href="privacy-policy.html" class="text-primary hover:underline">Privacy Policy</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Authentication Modal Script -->
+    <script>
+        // Store the original body overflow
+        let originalOverflow = '';
+
+        function openAuthModal(tab = 'login') {
+            const modal = document.getElementById('auth-modal');
+            const backdrop = document.getElementById('auth-backdrop');
+            const content = document.getElementById('auth-content');
+
+            // Show modal container
+            modal.classList.remove('hidden');
+
+            // Prevent scrolling
+            originalOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+
+            // Small delay to allow display:block to apply before animating opacity
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+                backdrop.classList.add('opacity-100');
+
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+            switchAuthTab(tab);
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('auth-modal');
+            const backdrop = document.getElementById('auth-backdrop');
+            const content = document.getElementById('auth-content');
+
+            // Animate out
+            backdrop.classList.remove('opacity-100');
+            backdrop.classList.add('opacity-0');
+
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+
+            // Wait for animation to finish before hiding
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = originalOverflow;
+            }, 300);
+        }
+
+        function switchAuthTab(tab) {
+            const formLogin = document.getElementById('form-login');
+            const formSignup = document.getElementById('form-signup');
+            const tabLogin = document.getElementById('tab-login');
+            const tabSignup = document.getElementById('tab-signup');
+            const indicator = document.getElementById('tab-indicator');
+
+            if (tab === 'login') {
+                formLogin.classList.remove('hidden');
+                formLogin.classList.add('animate-fade-in');
+                formSignup.classList.add('hidden');
+
+                tabLogin.classList.add('text-white', 'bg-white/5');
+                tabLogin.classList.remove('text-slate-400');
+
+                tabSignup.classList.remove('text-white', 'bg-white/5');
+                tabSignup.classList.add('text-slate-400');
+
+                indicator.style.transform = 'translateX(0%)';
+            } else {
+                formSignup.classList.remove('hidden');
+                formSignup.classList.add('animate-fade-in');
+                formLogin.classList.add('hidden');
+
+                tabSignup.classList.add('text-white', 'bg-white/5');
+                tabSignup.classList.remove('text-slate-400');
+
+                tabLogin.classList.remove('text-white', 'bg-white/5');
+                tabLogin.classList.add('text-slate-400');
+
+                indicator.style.transform = 'translateX(100%)';
+            }
+        }
+    </script>
+
 </body>
 </html>
