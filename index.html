@@ -1,298 +1,653 @@
 <!DOCTYPE html>
-
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Lumera - Service Discovery</title>
-<!-- Tailwind CSS v3 with plugins -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts: Inter -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<script data-purpose="tailwind-config">
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#0f49bd',
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
-          borderRadius: {
-            'custom': '4px', // ROUND_FOUR implementation
-          }
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumera - Trusted Wedding Suppliers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#0B0B0F',
+                        card: '#15151A',
+                        cardhover: '#1A1A22',
+                        primary: '#5A71F6',
+                        border: '#2A2A35',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-<style data-purpose="custom-styling">
-    body {
-      background-color: #f8fafc;
-      font-family: 'Inter', sans-serif;
-    }
-    .round-four {
-      border-radius: 4px !important;
-    }
-  </style>
+    </script>
+    <style>
+        body { background-color: #0B0B0F; color: white; }
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(11, 11, 15, 1) 30%, rgba(11, 11, 15, 0.4) 100%),
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .search-bar-glass {
+            background: rgba(20, 20, 25, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #A855F7, #EC4899, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #EC4899, #8B5CF6);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            box-shadow: 0 10px 20px -10px rgba(236, 72, 153, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-orange-gradient {
+            background: linear-gradient(135deg, #F97316, #EC4899);
+            transition: all 0.3s ease;
+        }
+        .btn-orange-gradient:hover {
+            box-shadow: 0 10px 20px -10px rgba(249, 115, 22, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-blue-gradient {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            transition: all 0.3s ease;
+        }
+        .btn-blue-gradient:hover {
+            box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.6);
+            transform: translateY(-2px);
+        }
+        .banner-orange {
+            background: linear-gradient(135deg, rgba(67, 20, 7, 0.9) 0%, rgba(28, 9, 3, 0.9) 100%);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+        .banner-blue {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 75, 0.9) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        /* Hide scrollbar for horizontal scroll but allow scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .glass-card {
+            background: rgba(21, 21, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(26, 26, 34, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #5A71F6;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: right;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    </style>
 </head>
-<body class="text-slate-900">
-<!-- BEGIN: MainHeader -->
-<header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-<!-- Logo and Brand -->
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 bg-primary round-four flex items-center justify-center">
-<span class="text-white font-bold">L</span>
-</div>
-<h1 class="text-xl font-bold tracking-tight text-primary">Lumera</h1>
-</div>
-<!-- Nav Links -->
-<nav class="hidden md:flex space-x-8">
-<a class="text-slate-600 hover:text-primary font-medium" href="#">Explore</a>
-<a class="text-slate-600 hover:text-primary font-medium" href="#">Accreditation</a>
-<a class="text-slate-600 hover:text-primary font-medium" href="#">For Businesses</a>
-</nav>
-<!-- User Actions -->
-<div class="flex items-center gap-4">
-<button class="text-slate-600 hover:text-primary font-medium">Log In</button>
-<button class="bg-primary text-white px-4 py-2 round-four font-medium hover:bg-blue-700 transition-colors">Join Lumera</button>
-</div>
-</div>
-</header>
-<!-- END: MainHeader -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-<!-- BEGIN: SearchSection -->
-<section class="mb-12" data-purpose="hero-search">
-<div class="text-center mb-8">
-<h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">Find Trusted Professionals</h2>
-<p class="mt-3 text-lg text-slate-500">Discover accredited services for construction, weddings, and more.</p>
-</div>
-<!-- Main Search Bar -->
-<div class="max-w-3xl mx-auto flex flex-col md:flex-row gap-2 bg-white p-2 round-four shadow-sm border border-slate-200">
-<div class="flex-1 relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<input class="block w-full pl-10 border-transparent focus:ring-0 focus:border-transparent text-slate-700" placeholder="Search services (e.g. Civil Engineer, Florist...)" type="text"/>
-</div>
-<div class="h-10 w-px bg-slate-200 hidden md:block"></div>
-<div class="flex-1 relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<input class="block w-full pl-10 border-transparent focus:ring-0 focus:border-transparent text-slate-700" placeholder="Location" type="text"/>
-</div>
-<button class="bg-primary text-white px-8 py-2 round-four font-semibold hover:opacity-90">Search</button>
-</div>
-</section>
-<!-- END: SearchSection -->
-<div class="flex flex-col lg:flex-row gap-8">
-<!-- BEGIN: FilterSidebar -->
-<aside class="w-full lg:w-64 space-y-8" data-purpose="discovery-filters">
-<!-- Category Filter -->
-<div>
-<h3 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Categories</h3>
-<div class="space-y-2">
-<label class="flex items-center">
-<input checked="" class="round-four text-primary border-slate-300 focus:ring-primary" type="checkbox"/>
-<span class="ml-2 text-slate-600">All Categories</span>
-</label>
-<label class="flex items-center">
-<input class="round-four text-primary border-slate-300 focus:ring-primary" type="checkbox"/>
-<span class="ml-2 text-slate-600">Construction</span>
-</label>
-<label class="flex items-center">
-<input class="round-four text-primary border-slate-300 focus:ring-primary" type="checkbox"/>
-<span class="ml-2 text-slate-600">Weddings</span>
-</label>
-<label class="flex items-center">
-<input class="round-four text-primary border-slate-300 focus:ring-primary" type="checkbox"/>
-<span class="ml-2 text-slate-600">Suppliers</span>
-</label>
-</div>
-</div>
-<!-- Accreditation Status -->
-<div>
-<h3 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Accreditation</h3>
-<div class="space-y-2">
-<label class="flex items-center">
-<input checked="" class="text-primary border-slate-300 focus:ring-primary" name="acc" type="radio"/>
-<span class="ml-2 text-slate-600">Any Status</span>
-</label>
-<label class="flex items-center">
-<input class="text-primary border-slate-300 focus:ring-primary" name="acc" type="radio"/>
-<span class="ml-2 text-slate-600">Verified Professional</span>
-</label>
-<label class="flex items-center">
-<input class="text-primary border-slate-300 focus:ring-primary" name="acc" type="radio"/>
-<span class="ml-2 text-slate-600">Premium Partner</span>
-</label>
-</div>
-</div>
-<!-- Rating Filter -->
-<div>
-<h3 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Minimum Rating</h3>
-<select class="w-full border-slate-300 round-four text-slate-600 focus:ring-primary focus:border-primary">
-<option>4.0+ Stars</option>
-<option>4.5+ Stars</option>
-<option>3.0+ Stars</option>
-</select>
-</div>
-</aside>
-<!-- END: FilterSidebar -->
-<!-- BEGIN: ResultsGrid -->
-<section class="flex-1">
-<div class="flex items-center justify-between mb-6">
-<p class="text-slate-500 font-medium">Showing <span class="text-slate-900 font-bold">124</span> results</p>
-<div class="flex items-center gap-2">
-<span class="text-sm text-slate-500">Sort by:</span>
-<select class="border-none bg-transparent font-semibold text-slate-900 focus:ring-0 cursor-pointer">
-<option>Recommended</option>
-<option>Highest Rated</option>
-<option>Newest</option>
-</select>
-</div>
-</div>
-<!-- Grid Container -->
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-<!-- Provider Card 1 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-md transition-shadow group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Modern Construction Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcGaJNFghl2JjBsRKszgzNX4ilKiBjF62JggQq5qVA0gTZp92GbhdUNS8sOCp8wT5PoZ7_Ujfr_60_Iypc31_gH9LMUA0w7dCkZwxC5-N3A3MY2MpwqQWLrC3uL9LUhDVhcf2pcLWLyWin_2bAt0MaOKFlSYg47diufdw36iCnhtmZzcUQZDRKSWmepBqs31unDSKz5klPdOukXkyt7gAER0KoKCNRz4RJatbS5i_6vwUscT0WndV7VotPnAU_PdGy-McVkUOjinA"/>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-primary flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M2.166 4.9L9.03 9.069a1.003 1.003 0 00.94 0l6.864-4.17A1 1 0 0016 3.235V3H4v.235a1 1 0 00-.834.665zM18 8v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8l7.03 4.26a2 2 0 001.94 0L18 8z" fill-rule="evenodd"></path></svg>
-                VERIFIED
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Apex Construction Ltd</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.9</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Specializing in sustainable residential projects and luxury modern renovations across the metropolitan area.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Residential</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Eco-Friendly</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  London, UK
-                </span>
-<span class="text-primary font-bold text-sm">View Profile</span>
-</div>
-</div>
-</article>
-<!-- Provider Card 2 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-md transition-shadow group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Petals &amp; Prose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcOrxwdFyLXnTbc0VCvBU75nIwQ4qmafXSOMJlUE103xsn1MIhIw2w7Uftmo4zM4FKnFhUEjkQVM1luiYqiELH_JY9fbHLF24jTD4V84WcoV5A3-6cAM5iKT_egnOlHmDe5fZuDULJZUaMS5aEubRI8mm-6wEq4972wLEFwXQERBmkWHugcLI2Teqqo5kQ5EKYsdpYwmcjplbZUEFI7up7mppnAKWJUFWK6WIly4OLWthxLZdHpzjy8zPCDWeSMavP9XURg4f6ZnM"/>
-<div class="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm px-2 py-1 round-four text-[10px] font-bold text-white flex items-center gap-1 shadow-sm">
-<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path clip-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" fill-rule="evenodd"></path></svg>
-                PREMIUM
-              </div>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Petals &amp; Prose</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.8</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Bespoke floral arrangements for high-end weddings and corporate events. Award-winning design team.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Weddings</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Luxury</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Manchester, UK
-                </span>
-<span class="text-primary font-bold text-sm">View Profile</span>
-</div>
-</div>
-</article>
-<!-- Provider Card 3 -->
-<article class="bg-white border border-slate-200 round-four overflow-hidden hover:shadow-md transition-shadow group cursor-pointer" data-purpose="service-provider-card">
-<div class="h-48 bg-slate-100 relative overflow-hidden">
-<img alt="Urban Supply Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOtFgS2UChow2epW7bi83eURDIZuGJz-v-KqCBgIeXlhH78G7MlJFpiCBag8Dh0lAL9d6cTj9i8NGnchHmLBXrn9YZyZbSoDxt2z0fddal4dAO08jgAcnBuHcXTuvxtKm9HXjCfJodFn6-gLSFncXHPj-9FjuniiR3ej1umym88mKgIGREfx2q8SyenqPwKJrUj52g5rk3byc9gF_Et0WHqJdRbyANscIOrovb5pJF4-KSoOlnwnmv2sf_GgYFcbIK247AsiXkq5w"/>
-</div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-2">
-<h4 class="font-bold text-lg text-slate-900">Urban Supply Co.</h4>
-<div class="flex items-center text-amber-500">
-<span class="text-sm font-bold mr-1">4.5</span>
-<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-</div>
-</div>
-<p class="text-sm text-slate-500 line-clamp-2 mb-4">Your one-stop destination for premium building materials and industrial hardware supplies.</p>
-<div class="flex items-center gap-2 flex-wrap mb-4">
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Suppliers</span>
-<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[11px] font-medium round-four">Wholesale</span>
-</div>
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-xs text-slate-400 flex items-center gap-1">
-<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                  Birmingham, UK
-                </span>
-<span class="text-primary font-bold text-sm">View Profile</span>
-</div>
-</div>
-</article>
-</div>
-<!-- Pagination -->
-<div class="mt-12 flex items-center justify-center gap-2">
-<button class="w-10 h-10 flex items-center justify-center round-four border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-50" disabled="">←</button>
-<button class="w-10 h-10 flex items-center justify-center round-four bg-primary text-white font-bold">1</button>
-<button class="w-10 h-10 flex items-center justify-center round-four border border-slate-200 text-slate-600 hover:bg-slate-50">2</button>
-<button class="w-10 h-10 flex items-center justify-center round-four border border-slate-200 text-slate-600 hover:bg-slate-50">3</button>
-<button class="w-10 h-10 flex items-center justify-center round-four border border-slate-200 text-slate-600 hover:bg-slate-50">→</button>
-</div>
-</section>
-<!-- END: ResultsGrid -->
-</div>
-</main>
-<!-- BEGIN: MainFooter -->
-<footer class="bg-slate-900 text-slate-300 py-12 mt-20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-<div class="col-span-2 md:col-span-1">
-<h5 class="text-white font-bold mb-4">Lumera</h5>
-<p class="text-sm leading-relaxed">The global standard for service accreditation and professional discovery. Building trust, one connection at a time.</p>
-</div>
-<div>
-<h5 class="text-white font-bold mb-4">Resources</h5>
-<ul class="text-sm space-y-2">
-<li><a class="hover:text-white" href="#">Help Center</a></li>
-<li><a class="hover:text-white" href="#">Success Stories</a></li>
-<li><a class="hover:text-white" href="#">Safety &amp; Trust</a></li>
-</ul>
-</div>
-<div>
-<h5 class="text-white font-bold mb-4">Company</h5>
-<ul class="text-sm space-y-2">
-<li><a class="hover:text-white" href="#">About Us</a></li>
-<li><a class="hover:text-white" href="#">Careers</a></li>
-<li><a class="hover:text-white" href="#">Terms of Service</a></li>
-</ul>
-</div>
-<div>
-<h5 class="text-white font-bold mb-4">Newsletter</h5>
-<div class="flex">
-<input class="bg-slate-800 border-none round-four w-full focus:ring-primary text-white text-sm" placeholder="Email" type="email"/>
-<button class="ml-2 bg-primary px-4 py-2 round-four text-white font-bold text-sm">Join</button>
-</div>
-</div>
-</div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-800 text-center text-xs">
-      © 2023 Lumera Inc. All rights reserved.
+<body class="font-sans antialiased selection:bg-primary/30">
+
+    <!-- Header -->
+    <header id="main-header" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-5 px-6 md:px-12">
+        <div class="max-w-[1400px] mx-auto flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="relative w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors">
+                    <img src="logo_mark.png" alt="Lumera" class="h-6 w-auto object-contain">
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight text-white">Lumera</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#" class="hover:text-white transition-colors nav-link">Explore</a>
+                <a href="#" class="hover:text-white transition-colors nav-link">How It Works</a>
+                <a href="#" class="hover:text-white transition-colors nav-link">For Suppliers</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button class="hidden md:block text-sm font-medium text-slate-300 hover:text-white transition-colors">Log In</button>
+                <button class="bg-white/10 hover:bg-white/20 border border-white/10 text-white text-sm font-medium py-2 px-5 rounded-lg transition-all shadow-lg hover:shadow-white/5">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-48 md:pt-48 md:pb-64 hero-gradient overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent z-0"></div>
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
+            <div class="max-w-2xl opacity-0 animate-fade-in-up" style="animation-delay: 0.1s;">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md shadow-lg">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-xs font-medium text-slate-300">Over 5,000 verified suppliers inside</span>
+                </div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6 tracking-tight">
+                    Find Trusted <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">Wedding Suppliers</span><br />
+                    All in One Place
+                </h1>
+                <p class="text-xl text-slate-300 mb-4 font-medium max-w-lg leading-relaxed">
+                    Verified. Reviewed. Ready to book.
+                </p>
+                <p class="text-md text-slate-400 max-w-lg">
+                    Hindi ka na maloloko—verified lahat ng suppliers para sa peace of mind mo on your special day.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Search Bar -->
+    <div class="max-w-[1100px] mx-auto px-4 sm:px-6 relative -mt-32 z-20 mb-20 opacity-0 animate-fade-in-up" style="animation-delay: 0.3s;">
+        <div class="search-bar-glass rounded-3xl p-6 md:p-8">
+            <div class="flex flex-col md:flex-row items-end gap-4">
+                <div class="flex-1 w-full">
+                    <label class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider pl-1">What are you looking for?</label>
+                    <div class="relative flex items-center bg-dark/60 border border-border rounded-xl px-4 py-3.5 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all group">
+                        <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-4 group-focus-within:text-primary transition-colors"></i>
+                        <input type="text" placeholder="Photographer, Venue, Makeup, Host..." class="bg-transparent border-none w-full text-sm text-white focus:outline-none pl-9 placeholder:text-slate-500">
+                    </div>
+                </div>
+
+                <div class="w-full md:w-64">
+                    <label class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider pl-1">Location</label>
+                    <div class="relative flex items-center bg-dark/60 border border-border rounded-xl px-4 py-3.5 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all cursor-pointer group">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-blue-400 absolute left-4 group-focus-within:text-primary transition-colors"></i>
+                        <select class="bg-transparent border-none w-full text-sm text-white focus:outline-none pl-9 appearance-none cursor-pointer">
+                            <option value="metro-manila">Metro Manila</option>
+                            <option value="cebu">Cebu</option>
+                            <option value="davao">Davao</option>
+                            <option value="tagaytay">Tagaytay</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 absolute right-4 pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-64">
+                    <label class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider pl-1">Date (Optional)</label>
+                    <div class="relative flex items-center bg-dark/60 border border-border rounded-xl px-4 py-3.5 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all cursor-pointer group">
+                        <i data-lucide="calendar" class="w-5 h-5 text-slate-400 absolute left-4 group-focus-within:text-primary transition-colors"></i>
+                        <input type="text" placeholder="Add Date" class="bg-transparent border-none w-full text-sm text-white focus:outline-none pl-9 placeholder:text-slate-500">
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 absolute right-4"></i>
+                    </div>
+                </div>
+
+                <button class="w-full md:w-auto btn-gradient text-white font-bold py-3.5 px-8 rounded-xl shadow-lg shadow-purple-500/25 text-sm h-[52px] flex-shrink-0 flex items-center justify-center gap-2">
+                    <i data-lucide="search" class="w-4 h-4"></i> Search
+                </button>
+            </div>
+
+            <!-- Categories -->
+            <div class="flex items-center gap-3 mt-8 overflow-x-auto hide-scrollbar pb-2 snap-x snap-mandatory">
+                <button class="snap-start flex items-center gap-2 px-4 py-2.5 rounded-full border border-yellow-500/30 bg-yellow-500/10 text-white text-sm font-medium whitespace-nowrap hover:bg-yellow-500/20 hover:border-yellow-500/50 transition-all">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-yellow-400"></i> Venues
+                </button>
+                <button class="snap-start flex items-center gap-2 px-4 py-2.5 rounded-full border border-border bg-dark/50 text-slate-300 text-sm font-medium whitespace-nowrap hover:bg-white/5 hover:text-white transition-all">
+                    <i data-lucide="clipboard-list" class="w-4 h-4 text-purple-400"></i> Planning & Coordination
+                </button>
+                <button class="snap-start flex items-center gap-2 px-4 py-2.5 rounded-full border border-border bg-dark/50 text-slate-300 text-sm font-medium whitespace-nowrap hover:bg-white/5 hover:text-white transition-all">
+                    <i data-lucide="camera" class="w-4 h-4 text-blue-400"></i> Photo & Video
+                </button>
+                <button class="snap-start flex items-center gap-2 px-4 py-2.5 rounded-full border border-border bg-dark/50 text-slate-300 text-sm font-medium whitespace-nowrap hover:bg-white/5 hover:text-white transition-all">
+                    <span class="text-pink-400">✨</span> Styling & Beauty
+                </button>
+                <button class="snap-start flex items-center gap-2 px-4 py-2.5 rounded-full border border-border bg-dark/50 text-slate-300 text-sm font-medium whitespace-nowrap hover:bg-white/5 hover:text-white transition-all">
+                    <i data-lucide="utensils" class="w-4 h-4 text-orange-400"></i> Food & Experience
+                </button>
+                <button class="snap-start flex items-center gap-2 px-4 py-2.5 rounded-full border border-transparent text-slate-400 text-sm font-medium whitespace-nowrap hover:text-white transition-all">
+                    More <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
     </div>
-</footer>
-<!-- END: MainFooter -->
-</body></html>
+
+    <!-- Main Content -->
+    <main class="max-w-[1400px] mx-auto px-6 md:px-12 pb-24 space-y-32">
+
+        <!-- Explore Top Suppliers -->
+        <section class="relative">
+            <div class="flex items-center justify-between mb-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold tracking-tight mb-2">Explore Top Suppliers</h2>
+                    <p class="text-slate-400 text-sm">Discover highly-rated professionals for your big day.</p>
+                </div>
+                <a href="#" class="hidden md:flex items-center gap-1 text-sm font-medium text-primary hover:text-blue-400 transition-colors">
+                    View All <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <div class="flex gap-6 overflow-x-auto hide-scrollbar pb-8 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory">
+                <!-- Supplier 1 -->
+                <a href="supplier-details.html" class="snap-start min-w-[300px] w-[300px] block glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1554046920-90dcac471c26?auto=format&fit=crop&q=80&w=600" alt="Snapshots by Gio" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-3 left-3 bg-dark/80 backdrop-blur-md text-[11px] font-semibold px-2.5 py-1 rounded-md text-white border border-white/10 shadow-lg">
+                            Top Photographers
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-dark/50 backdrop-blur-md flex items-center justify-center border border-white/10 hover:bg-dark transition-colors text-slate-300 hover:text-pink-500 hover:scale-110">
+                            <i data-lucide="heart" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-start justify-between gap-2 mb-2">
+                            <h3 class="font-bold text-lg text-white leading-tight group-hover:text-primary transition-colors">Snapshots by Gio</h3>
+                            <div class="flex-shrink-0 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1 uppercase tracking-wider">
+                                <i data-lucide="check" class="w-3 h-3"></i> Verified
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5 mb-4 text-sm">
+                            <i data-lucide="star" class="w-4 h-4 text-orange-400 fill-orange-400"></i>
+                            <span class="font-bold text-white">4.9</span>
+                            <span class="text-slate-500">(128 reviews)</span>
+                        </div>
+                        <div class="text-sm text-slate-400 pt-4 border-t border-white/5">
+                            Starting at <span class="text-white font-semibold">₱25,000</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Supplier 2 -->
+                <a href="supplier-details.html" class="snap-start min-w-[300px] w-[300px] block glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=600" alt="The Gardens" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-3 left-3 bg-orange-500/90 backdrop-blur-md text-[11px] font-semibold px-2.5 py-1 rounded-md text-white border border-orange-400/30 shadow-lg flex items-center gap-1">
+                            <i data-lucide="star" class="w-3 h-3 text-white fill-white"></i> Popular Venues
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-dark/50 backdrop-blur-md flex items-center justify-center border border-white/10 hover:bg-dark transition-colors text-slate-300 hover:text-pink-500 hover:scale-110">
+                            <i data-lucide="heart" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-start justify-between gap-2 mb-2">
+                            <h3 class="font-bold text-lg text-white leading-tight group-hover:text-primary transition-colors">The Gardens<br>Event Place</h3>
+                            <div class="flex-shrink-0 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1 uppercase tracking-wider">
+                                <i data-lucide="check" class="w-3 h-3"></i> Verified
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5 mb-4 text-sm">
+                            <i data-lucide="star" class="w-4 h-4 text-orange-400 fill-orange-400"></i>
+                            <span class="font-bold text-white">4.8</span>
+                            <span class="text-slate-500">(96 reviews)</span>
+                        </div>
+                        <div class="text-sm text-slate-400 pt-4 border-t border-white/5">
+                            Starting at <span class="text-white font-semibold">₱80,000</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Supplier 3 -->
+                <a href="supplier-details.html" class="snap-start min-w-[300px] w-[300px] block glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=600" alt="Makeup by Claire" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-3 left-3 bg-blue-500/90 backdrop-blur-md text-[11px] font-semibold px-2.5 py-1 rounded-md text-white border border-blue-400/30 shadow-lg flex items-center gap-1">
+                            Budget-Friendly
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-dark/50 backdrop-blur-md flex items-center justify-center border border-white/10 hover:bg-dark transition-colors text-slate-300 hover:text-pink-500 hover:scale-110">
+                            <i data-lucide="heart" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-start justify-between gap-2 mb-2">
+                            <h3 class="font-bold text-lg text-white leading-tight group-hover:text-primary transition-colors">Makeup by Claire</h3>
+                            <div class="flex-shrink-0 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1 uppercase tracking-wider">
+                                <i data-lucide="check" class="w-3 h-3"></i> Verified
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5 mb-4 text-sm">
+                            <i data-lucide="star" class="w-4 h-4 text-orange-400 fill-orange-400"></i>
+                            <span class="font-bold text-white">4.9</span>
+                            <span class="text-slate-500">(74 reviews)</span>
+                        </div>
+                        <div class="text-sm text-slate-400 pt-4 border-t border-white/5">
+                            Starting at <span class="text-white font-semibold">₱6,500</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Supplier 4 -->
+                <a href="supplier-details.html" class="snap-start min-w-[300px] w-[300px] block glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" alt="Manila Vibes Band" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-3 left-3 bg-purple-500/90 backdrop-blur-md text-[11px] font-semibold px-2.5 py-1 rounded-md text-white border border-purple-400/30 shadow-lg flex items-center gap-1">
+                            <i data-lucide="sparkles" class="w-3 h-3 text-white"></i> Highlight
+                        </div>
+                        <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-dark/50 backdrop-blur-md flex items-center justify-center border border-white/10 hover:bg-dark transition-colors text-slate-300 hover:text-pink-500 hover:scale-110">
+                            <i data-lucide="heart" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-start justify-between gap-2 mb-2">
+                            <h3 class="font-bold text-lg text-white leading-tight group-hover:text-primary transition-colors">Manila Vibes Band</h3>
+                            <div class="flex-shrink-0 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1 uppercase tracking-wider">
+                                <i data-lucide="check" class="w-3 h-3"></i> Verified
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5 mb-4 text-sm">
+                            <i data-lucide="star" class="w-4 h-4 text-orange-400 fill-orange-400"></i>
+                            <span class="font-bold text-white">5.0</span>
+                            <span class="text-slate-500">(43 reviews)</span>
+                        </div>
+                        <div class="text-sm text-slate-400 pt-4 border-t border-white/5">
+                            Starting at <span class="text-white font-semibold">₱35,000</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="md:hidden mt-6 text-center">
+                <a href="#" class="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-blue-400 transition-colors">
+                    View All Suppliers <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Why Couples Trust Lumera -->
+        <section>
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold tracking-tight mb-4">Why Couples Trust Lumera</h2>
+                <p class="text-slate-400">We take the stress out of wedding planning by providing a curated platform of the best wedding professionals in the Philippines.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Trust Card 1 -->
+                <div class="glass-card rounded-2xl p-8 text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-6 border border-emerald-500/20 group-hover:bg-emerald-500/20 group-hover:scale-110 transition-all duration-300">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-emerald-400"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-3 text-lg">Verified Suppliers</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6">Every supplier undergoes a strict verification process. No scammers here.</p>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400">
+                        <img src="logo_mark.png" alt="Lumera" class="w-4 h-4 object-contain">
+                        Lumera Verified
+                    </div>
+                </div>
+
+                <!-- Trust Card 2 -->
+                <div class="glass-card rounded-2xl p-8 text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-orange-500/10 flex items-center justify-center mx-auto mb-6 border border-orange-500/20 group-hover:bg-orange-500/20 group-hover:scale-110 transition-all duration-300">
+                        <i data-lucide="star" class="w-8 h-8 text-orange-400 fill-orange-400"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-3 text-lg">Real Reviews</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Honest feedback from real couples who have used these services.</p>
+                </div>
+
+                <!-- Trust Card 3 -->
+                <div class="glass-card rounded-2xl p-8 text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mx-auto mb-6 border border-blue-500/20 group-hover:bg-blue-500/20 group-hover:scale-110 transition-all duration-300">
+                        <i data-lucide="message-square-text" class="w-8 h-8 text-blue-400"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-3 text-lg">Direct Messaging</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Chat with suppliers instantly to ask questions and request quotes.</p>
+                </div>
+
+                <!-- Trust Card 4 -->
+                <div class="glass-card rounded-2xl p-8 text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center mx-auto mb-6 border border-purple-500/20 group-hover:bg-purple-500/20 group-hover:scale-110 transition-all duration-300">
+                        <i data-lucide="calendar-check" class="w-8 h-8 text-purple-400"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-3 text-lg">Easy Booking</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Secure and hassle-free booking platform for your peace of mind.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotional Banners -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- For Couples Banner -->
+            <div class="banner-orange rounded-[2rem] p-10 md:p-12 relative overflow-hidden flex flex-col justify-center min-h-[340px] group shadow-2xl">
+                <div class="relative z-10 max-w-[320px]">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 text-xs font-bold uppercase tracking-widest mb-6 border border-orange-500/30">
+                        For Couples
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-white">Plan your dream wedding stress-free.</h2>
+                    <p class="text-base text-orange-100/80 mb-8 leading-relaxed">Find trusted suppliers, compare prices, and book directly. No hidden fees, no surprises.</p>
+                    <button class="btn-orange-gradient text-white font-bold py-3 px-8 rounded-xl text-sm w-fit flex items-center gap-2 group-hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]">
+                        Start Planning <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+                <!-- Abstract elements / Image placeholder for couple -->
+                <div class="absolute right-0 bottom-0 h-full w-[45%] bg-[url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center [mask-image:linear-gradient(to_left,white,transparent)] opacity-60 group-hover:opacity-80 transition-opacity duration-500">
+                </div>
+            </div>
+
+            <!-- For Suppliers Banner -->
+            <div class="banner-blue rounded-[2rem] p-10 md:p-12 relative overflow-hidden flex flex-col justify-center min-h-[340px] group shadow-2xl">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center opacity-10 mix-blend-overlay group-hover:opacity-20 transition-opacity duration-500"></div>
+                <div class="relative z-10 max-w-[380px] ml-auto text-right flex flex-col items-end">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-500/30">
+                        For Wedding Pros
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-white">Get discovered by verified couples.</h2>
+                    <p class="text-base text-blue-100/80 mb-8 leading-relaxed">Grow your business, manage inquiries, and build your reputation with Lumera.</p>
+                    <div class="flex flex-wrap gap-4 justify-end">
+                        <button class="bg-transparent border border-blue-400/30 text-white font-bold py-3 px-6 rounded-xl text-sm hover:bg-blue-500/10 transition-colors">
+                            Learn More
+                        </button>
+                        <button class="btn-blue-gradient text-white font-bold py-3 px-6 rounded-xl text-sm group-hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+                            Join as Supplier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Sections -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-16">
+            <!-- How It Works -->
+            <div>
+                <h2 class="text-3xl font-extrabold mb-4">How It Works</h2>
+                <p class="text-base text-slate-400 mb-10">Plan your wedding in 3 simple steps.</p>
+                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-7 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-border before:via-border before:to-transparent">
+
+                    <div class="relative flex items-start gap-6">
+                        <div class="w-14 h-14 rounded-2xl bg-dark border-2 border-border flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg">
+                            <i data-lucide="search" class="w-6 h-6 text-blue-400"></i>
+                            <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-xs font-bold text-white border-2 border-dark shadow-md">1</div>
+                        </div>
+                        <div class="pt-2">
+                            <h3 class="text-xl font-bold text-white mb-2">Search & Discover</h3>
+                            <p class="text-slate-400 leading-relaxed">Find the best suppliers that match your budget, style, and location perfectly.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-start gap-6">
+                        <div class="w-14 h-14 rounded-2xl bg-dark border-2 border-border flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg">
+                            <i data-lucide="book-open" class="w-6 h-6 text-pink-400"></i>
+                            <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-pink-500 flex items-center justify-center text-xs font-bold text-white border-2 border-dark shadow-md">2</div>
+                        </div>
+                        <div class="pt-2">
+                            <h3 class="text-xl font-bold text-white mb-2">Compare & Connect</h3>
+                            <p class="text-slate-400 leading-relaxed">Read authentic reviews, view portfolios, and chat directly with suppliers to discuss details.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-start gap-6">
+                        <div class="w-14 h-14 rounded-2xl bg-dark border-2 border-border flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg">
+                            <i data-lucide="calendar-check" class="w-6 h-6 text-purple-400"></i>
+                            <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center text-xs font-bold text-white border-2 border-dark shadow-md">3</div>
+                        </div>
+                        <div class="pt-2">
+                            <h3 class="text-xl font-bold text-white mb-2">Book Securely</h3>
+                            <p class="text-slate-400 leading-relaxed">Finalize your booking with confidence using our secure platform and reliable contract system.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Loved by Real Couples -->
+            <div>
+                <div class="flex items-center justify-between mb-10">
+                    <h2 class="text-3xl font-extrabold">Loved by Real Couples</h2>
+                    <div class="flex gap-2">
+                        <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i data-lucide="chevron-left" class="w-5 h-5 text-white"></i>
+                        </button>
+                        <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-white"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-[2rem] p-8 md:p-10 relative">
+                    <i data-lucide="quote" class="w-12 h-12 text-white/5 absolute top-8 left-8"></i>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-1 mb-6">
+                            <i data-lucide="star" class="w-5 h-5 text-orange-400 fill-orange-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-orange-400 fill-orange-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-orange-400 fill-orange-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-orange-400 fill-orange-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-orange-400 fill-orange-400"></i>
+                        </div>
+                        <p class="text-lg md:text-xl text-slate-200 leading-relaxed font-medium mb-10">"Lumera made our wedding planning so much easier! We found our photographer and venue in just 2 days. Super dali at reliable gamitin, hindi na kami natakot ma-scam dahil verified lahat!"</p>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-full bg-slate-800 overflow-hidden ring-2 ring-white/10">
+                                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=100" alt="Mark and Sarah" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Mark & Sarah</h4>
+                                <p class="text-sm text-slate-500">Married on Feb 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#08080A] border-t border-border pt-16 pb-8">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+                <div class="lg:col-span-2">
+                    <a href="/" class="flex items-center gap-3 mb-6">
+                        <img src="logo_mark.png" alt="Lumera" class="h-8 w-auto object-contain">
+                        <span class="text-2xl font-extrabold tracking-tight text-white">Lumera</span>
+                    </a>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
+                        The Philippines' most trusted platform for discovering and booking verified wedding suppliers.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all text-slate-400 hover:text-white">
+                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all text-slate-400 hover:text-white">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all text-slate-400 hover:text-white">
+                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">Couples</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-primary transition-colors">Find Suppliers</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Wedding Ideas</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Planning Tools</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">Suppliers</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-primary transition-colors">Join Lumera</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Supplier Login</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Pricing & Plans</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Contact Support</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-slate-500 text-sm">© 2026 Lumera Inc. All rights reserved.</p>
+                <div class="flex items-center gap-6 text-sm text-slate-500">
+                    <span>Made with <i data-lucide="heart" class="w-3 h-3 inline text-pink-500 fill-pink-500"></i> in the Philippines</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Sticky header effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 20) {
+                header.classList.add('bg-dark/80', 'backdrop-blur-lg', 'border-b', 'border-white/5', 'py-4', 'shadow-lg');
+                header.classList.remove('bg-transparent', 'py-5');
+            } else {
+                header.classList.remove('bg-dark/80', 'backdrop-blur-lg', 'border-b', 'border-white/5', 'py-4', 'shadow-lg');
+                header.classList.add('bg-transparent', 'py-5');
+            }
+        });
+    </script>
+</body>
+</html>

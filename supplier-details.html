@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Details - Lumera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#0B0B0F',
+                        card: '#15151A',
+                        cardhover: '#1A1A22',
+                        primary: '#5A71F6',
+                        border: '#2A2A35',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0B0B0F; color: white; }
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(11, 11, 15, 1) 40%, rgba(11, 11, 15, 0.4) 100%),
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+        .search-bar-glass {
+            background: rgba(20, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #A855F7, #EC4899, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-gradient-to-r from-pink-500 to-purple-600 {
+            background: linear-gradient(135deg, #EC4899, #8B5CF6);
+            transition: all 0.3s ease;
+        }
+        .bg-gradient-to-r from-pink-500 to-purple-600:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+        .btn-orange-gradient {
+            background: linear-gradient(135deg, #F97316, #EC4899);
+        }
+        .btn-blue-gradient {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+        }
+        .banner-orange {
+            background: linear-gradient(135deg, #431407 0%, #1c0903 100%);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+        .banner-blue {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        /* Hide scrollbar for horizontal scroll but allow scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-[#0B0B0F] text-white min-h-screen flex flex-col font-sans">
+    <!-- Header -->
+    <!-- Header -->
+    <header class="fixed w-full z-50 transition-all duration-300 bg-[#0B0B0F]/80 backdrop-blur border-b border-[#2A2A35] py-4 px-6 md:px-12">
+        <div class="max-w-[1400px] mx-auto flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2">
+                <img src="logo_mark.png" alt="Lumera" class="h-8 w-auto">
+                <span class="text-xl font-bold tracking-tight text-white">Lumera</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#" class="hover:text-white transition-colors">Explore</a>
+                <a href="#" class="hover:text-white transition-colors">How It Works</a>
+                <a href="#" class="hover:text-white transition-colors">For Suppliers</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Log In</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-24 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 text-sm text-slate-400 mb-6">
+                <a href="index.html" class="hover:text-white">Directory</a>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <a href="#" class="hover:text-white">Manufacturing</a>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <span class="text-white font-medium">Acme Manufacturing Co.</span>
+            </nav>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Details Section -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Header Card -->
+                    <div class="bg-[#15151A] rounded-xl shadow-sm border border-[#2A2A35] p-6 sm:p-8">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-[#5A71F6]/10 text-[#5A71F6] rounded-xl flex items-center justify-center font-bold text-2xl">
+                                    A
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h1 class="text-2xl font-bold text-white">Acme Manufacturing Co.</h1>
+                                        <span class="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-blue-700/10">
+                                            Verified
+                                        </span>
+                                    </div>
+                                    <p class="text-slate-300 flex items-center gap-2">
+                                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                        Chicago, IL, USA
+                                    </p>
+                                </div>
+                            </div>
+                            <button class="w-full sm:w-auto px-4 py-2 bg-[#5A71F6] text-white font-medium rounded-lg hover:bg-[#4d61d6] transition-colors shadow-sm">
+                                Contact Supplier
+                            </button>
+                        </div>
+
+                        <div class="prose prose-slate max-w-none text-slate-300">
+                            <p>
+                                Acme Manufacturing Co. is a leading provider of precision-engineered industrial components.
+                                With over 25 years of experience, we specialize in high-tolerance machining, custom fabrication,
+                                and assembly services for the aerospace, automotive, and medical device sectors.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Certifications & Capabilities -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Certifications -->
+                        <div class="bg-[#15151A] rounded-xl shadow-sm border border-[#2A2A35] p-6">
+                            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <i data-lucide="award" class="w-5 h-5 text-[#5A71F6]"></i>
+                                Certifications
+                            </h2>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3 text-slate-200">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i>
+                                    ISO 9001:2015
+                                </li>
+                                <li class="flex items-center gap-3 text-slate-200">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i>
+                                    AS9100D Aerospace
+                                </li>
+                                <li class="flex items-center gap-3 text-slate-200">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i>
+                                    RoHS Compliant
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Capabilities -->
+                        <div class="bg-[#15151A] rounded-xl shadow-sm border border-[#2A2A35] p-6">
+                            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <i data-lucide="settings" class="w-5 h-5 text-[#5A71F6]"></i>
+                                Core Capabilities
+                            </h2>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-border text-slate-200 rounded-full text-sm font-medium">CNC Machining</span>
+                                <span class="px-3 py-1 bg-border text-slate-200 rounded-full text-sm font-medium">Metal Stamping</span>
+                                <span class="px-3 py-1 bg-border text-slate-200 rounded-full text-sm font-medium">Injection Molding</span>
+                                <span class="px-3 py-1 bg-border text-slate-200 rounded-full text-sm font-medium">Assembly</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products/Gallery Placeholder -->
+                    <div class="bg-[#15151A] rounded-xl shadow-sm border border-[#2A2A35] p-6">
+                        <h2 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                            <i data-lucide="box" class="w-5 h-5 text-[#5A71F6]"></i>
+                            Featured Products
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="aspect-square bg-border rounded-lg flex items-center justify-center border border-[#2A2A35] group cursor-pointer hover:border-[#5A71F6] transition-colors">
+                                <i data-lucide="image" class="w-8 h-8 text-slate-400 group-hover:text-[#5A71F6] transition-colors"></i>
+                            </div>
+                            <div class="aspect-square bg-border rounded-lg flex items-center justify-center border border-[#2A2A35] group cursor-pointer hover:border-[#5A71F6] transition-colors">
+                                <i data-lucide="image" class="w-8 h-8 text-slate-400 group-hover:text-[#5A71F6] transition-colors"></i>
+                            </div>
+                            <div class="aspect-square bg-border rounded-lg flex items-center justify-center border border-[#2A2A35] group cursor-pointer hover:border-[#5A71F6] transition-colors">
+                                <i data-lucide="image" class="w-8 h-8 text-slate-400 group-hover:text-[#5A71F6] transition-colors"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+                    <!-- Quick Info -->
+                    <div class="bg-[#15151A] rounded-xl shadow-sm border border-[#2A2A35] p-6">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Supplier Overview</h3>
+                        <dl class="space-y-4 text-sm">
+                            <div class="flex justify-between pb-4 border-b border-[#2A2A35]">
+                                <dt class="text-slate-400 flex items-center gap-2">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    Established
+                                </dt>
+                                <dd class="font-medium text-white">1998</dd>
+                            </div>
+                            <div class="flex justify-between pb-4 border-b border-[#2A2A35]">
+                                <dt class="text-slate-400 flex items-center gap-2">
+                                    <i data-lucide="users" class="w-4 h-4"></i>
+                                    Employees
+                                </dt>
+                                <dd class="font-medium text-white">250 - 500</dd>
+                            </div>
+                            <div class="flex justify-between pb-4 border-b border-[#2A2A35]">
+                                <dt class="text-slate-400 flex items-center gap-2">
+                                    <i data-lucide="dollar-sign" class="w-4 h-4"></i>
+                                    Revenue
+                                </dt>
+                                <dd class="font-medium text-white">$10M - $50M</dd>
+                            </div>
+                            <div class="flex justify-between pb-4 border-b border-[#2A2A35]">
+                                <dt class="text-slate-400 flex items-center gap-2">
+                                    <i data-lucide="globe" class="w-4 h-4"></i>
+                                    Website
+                                </dt>
+                                <dd class="font-medium text-[#5A71F6] hover:underline cursor-pointer">acmemfg.com</dd>
+                            </div>
+                        </dl>
+                        <div class="mt-6 pt-2">
+                            <button class="w-full px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium rounded-lg hover:opacity-90 transition-colors shadow-sm flex items-center justify-center gap-2">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                                Request Quote
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Performance Rating -->
+                    <div class="bg-[#15151A] rounded-xl shadow-sm border border-[#2A2A35] p-6">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Performance</h3>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="text-3xl font-bold text-white">4.8</div>
+                            <div class="flex text-yellow-400">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current text-slate-200"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-300">Based on 124 verified reviews from Lumera buyers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#15151A] border-t border-[#2A2A35] py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-slate-400 text-sm">© 2026 Lumera Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
