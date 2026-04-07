@@ -139,13 +139,11 @@
 <body class="font-sans antialiased selection:bg-primary/30">
 
     <!-- Header -->
-    <header id="main-header" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-5 px-6 md:px-12">
+        <header class="fixed w-full z-50 transition-all duration-300 bg-[#0B0B0F]/80 backdrop-blur border-b border-[#2A2A35] py-4 px-6 md:px-12">
         <div class="max-w-[1400px] mx-auto flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 group">
-                <div class="relative w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors">
-                    <img src="logo_mark.png" alt="Lumera" class="h-6 w-auto object-contain">
-                </div>
-                <span class="text-2xl font-extrabold tracking-tight text-white">Lumera</span>
+            <a href="index.html" class="flex items-center gap-2 group">
+                <img src="logo_mark.png" alt="Lumera" class="h-8 w-auto">
+                <span class="text-xl font-bold tracking-tight text-white group-hover:text-slate-200 transition-colors">Lumera</span>
             </a>
 
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
@@ -156,7 +154,7 @@
 
             <div class="flex items-center gap-4">
                 <button onclick="openAuthModal('login')" class="hidden md:block text-sm font-medium text-slate-300 hover:text-white transition-colors">Log In</button>
-                <button onclick="openAuthModal('signup')" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white text-sm font-medium py-2 px-5 rounded-lg transition-all shadow-lg hover:shadow-white/5">Sign Up</button>
+                <button onclick="openAuthModal('signup')" class="bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary text-sm font-medium py-2 px-5 rounded-lg transition-all">Sign Up</button>
             </div>
         </div>
     </header>
@@ -409,9 +407,17 @@
             // Show modal container
             modal.classList.remove('hidden');
 
-            // Prevent scrolling
+            // Prevent scrolling and layout shift
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
             originalOverflow = document.body.style.overflow;
             document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = scrollbarWidth + 'px';
+
+            // Fix fixed header shift
+            const headers = document.querySelectorAll('header.fixed');
+            headers.forEach(header => {
+                header.style.paddingRight = `calc(${window.getComputedStyle(header).paddingRight} + ${scrollbarWidth}px)`;
+            });
 
             // Small delay to allow display:block to apply before animating opacity
             setTimeout(() => {
@@ -441,6 +447,13 @@
             setTimeout(() => {
                 modal.classList.add('hidden');
                 document.body.style.overflow = originalOverflow;
+                document.body.style.paddingRight = '';
+
+                // Restore fixed header padding
+                const headers = document.querySelectorAll('header.fixed');
+                headers.forEach(header => {
+                    header.style.paddingRight = '';
+                });
             }, 300);
         }
 

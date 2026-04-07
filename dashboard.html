@@ -150,25 +150,25 @@
     <main class="flex-1 flex flex-col h-full overflow-hidden relative">
 
         <!-- Top Nav -->
-        <header class="h-20 flex items-center justify-between px-8 border-b border-white/5 bg-[#050505]/80 backdrop-blur-md z-10 shrink-0">
-            <!-- Search -->
-            <div class="relative w-96">
-                <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
-                <input type="text" placeholder="Search" class="w-full bg-[#111116] border border-white/10 rounded-full py-2 pl-10 pr-4 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-white/20 transition-colors">
-            </div>
+            <header class="fixed w-full z-50 transition-all duration-300 bg-[#0B0B0F]/80 backdrop-blur border-b border-[#2A2A35] py-4 px-6 md:px-12">
+        <div class="max-w-[1400px] mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <img src="logo_mark.png" alt="Lumera" class="h-8 w-auto">
+                <span class="text-xl font-bold tracking-tight text-white group-hover:text-slate-200 transition-colors">Lumera</span>
+            </a>
 
-            <!-- Right Actions -->
-            <div class="flex items-center gap-6">
-                <button class="relative text-slate-400 hover:text-white transition-colors">
-                    <i data-lucide="bell" class="w-5 h-5"></i>
-                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full border border-[#050505]"></span>
-                </button>
-                <div class="flex items-center gap-3 cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="User" class="w-8 h-8 rounded-full border border-white/10">
-                    <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400"></i>
-                </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="explore.html" class="hover:text-white transition-colors nav-link">Explore</a>
+                <a href="how-it-works.html" class="hover:text-white transition-colors nav-link">How It Works</a>
+                <a href="for-suppliers.html" class="hover:text-white transition-colors nav-link">For Suppliers</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button onclick="openAuthModal('login')" class="hidden md:block text-sm font-medium text-slate-300 hover:text-white transition-colors">Log In</button>
+                <button onclick="openAuthModal('signup')" class="bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary text-sm font-medium py-2 px-5 rounded-lg transition-all">Sign Up</button>
             </div>
-        </header>
+        </div>
+    </header>
 
         <!-- Scrollable Content Area -->
         <div class="flex-1 overflow-y-auto p-8">
@@ -626,9 +626,17 @@
             // Show modal container
             modal.classList.remove('hidden');
 
-            // Prevent scrolling
+            // Prevent scrolling and layout shift
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
             originalOverflow = document.body.style.overflow;
             document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = scrollbarWidth + 'px';
+
+            // Fix fixed header shift
+            const headers = document.querySelectorAll('header.fixed');
+            headers.forEach(header => {
+                header.style.paddingRight = `calc(${window.getComputedStyle(header).paddingRight} + ${scrollbarWidth}px)`;
+            });
 
             // Small delay to allow display:block to apply before animating opacity
             setTimeout(() => {
@@ -658,6 +666,13 @@
             setTimeout(() => {
                 modal.classList.add('hidden');
                 document.body.style.overflow = originalOverflow;
+                document.body.style.paddingRight = '';
+
+                // Restore fixed header padding
+                const headers = document.querySelectorAll('header.fixed');
+                headers.forEach(header => {
+                    header.style.paddingRight = '';
+                });
             }, 300);
         }
 
