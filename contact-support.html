@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumera - Trusted Wedding Suppliers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#0B0B0F',
+                        card: '#15151A',
+                        cardhover: '#1A1A22',
+                        primary: '#5A71F6',
+                        border: '#2A2A35',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0B0B0F; color: white; }
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(11, 11, 15, 1) 30%, rgba(11, 11, 15, 0.4) 100%),
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .search-bar-glass {
+            background: rgba(20, 20, 25, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #A855F7, #EC4899, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #EC4899, #8B5CF6);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            box-shadow: 0 10px 20px -10px rgba(236, 72, 153, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-orange-gradient {
+            background: linear-gradient(135deg, #F97316, #EC4899);
+            transition: all 0.3s ease;
+        }
+        .btn-orange-gradient:hover {
+            box-shadow: 0 10px 20px -10px rgba(249, 115, 22, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-blue-gradient {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            transition: all 0.3s ease;
+        }
+        .btn-blue-gradient:hover {
+            box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.6);
+            transform: translateY(-2px);
+        }
+        .banner-orange {
+            background: linear-gradient(135deg, rgba(67, 20, 7, 0.9) 0%, rgba(28, 9, 3, 0.9) 100%);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+        .banner-blue {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 75, 0.9) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        /* Hide scrollbar for horizontal scroll but allow scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .glass-card {
+            background: rgba(21, 21, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(26, 26, 34, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #5A71F6;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: right;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-primary/30">
+
+    <!-- Header -->
+    <header id="main-header" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-5 px-6 md:px-12">
+        <div class="max-w-[1400px] mx-auto flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="relative w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors">
+                    <img src="logo_mark.png" alt="Lumera" class="h-6 w-auto object-contain">
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight text-white">Lumera</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="explore.html" class="hover:text-white transition-colors nav-link">Explore</a>
+                <a href="how-it-works.html" class="hover:text-white transition-colors nav-link">How It Works</a>
+                <a href="for-suppliers.html" class="hover:text-white transition-colors nav-link">For Suppliers</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button class="hidden md:block text-sm font-medium text-slate-300 hover:text-white transition-colors">Log In</button>
+                <button class="bg-white/10 hover:bg-white/20 border border-white/10 text-white text-sm font-medium py-2 px-5 rounded-lg transition-all shadow-lg hover:shadow-white/5">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 hero-gradient overflow-hidden border-b border-border min-h-[70vh] flex flex-col justify-center">
+        <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent z-0"></div>
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10 text-center w-full">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6 animate-fade-in-up">
+                Contact Support
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 animate-fade-in-up" style="animation-delay: 0.1s;">
+                We're here to help. Get in touch with our team.
+            </p>
+            <div class="animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="inline-flex items-center gap-2 text-sm text-primary bg-primary/10 border border-primary/20 px-4 py-2 rounded-full">
+                    <i data-lucide="wrench" class="w-4 h-4"></i> Page under construction
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Footer -->
+    <footer class="bg-[#08080A] border-t border-border pt-16 pb-8">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+                <div class="lg:col-span-2">
+                    <a href="/" class="flex items-center gap-3 mb-6">
+                        <img src="logo_mark.png" alt="Lumera" class="h-8 w-auto object-contain">
+                        <span class="text-2xl font-extrabold tracking-tight text-white">Lumera</span>
+                    </a>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
+                        The Philippines' most trusted platform for discovering and booking verified wedding suppliers.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all text-slate-400 hover:text-white">
+                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all text-slate-400 hover:text-white">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all text-slate-400 hover:text-white">
+                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">Couples</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a href="explore.html" class="hover:text-primary transition-colors">Find Suppliers</a></li>
+                        <li><a href="wedding-ideas.html" class="hover:text-primary transition-colors">Wedding Ideas</a></li>
+                        <li><a href="planning-tools.html" class="hover:text-primary transition-colors">Planning Tools</a></li>
+                        <li><a href="sign-up.html" class="hover:text-primary transition-colors">Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">Suppliers</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a href="join-lumera.html" class="hover:text-primary transition-colors">Join Lumera</a></li>
+                        <li><a href="supplier-login.html" class="hover:text-primary transition-colors">Supplier Login</a></li>
+                        <li><a href="pricing-plans.html" class="hover:text-primary transition-colors">Pricing & Plans</a></li>
+                        <li><a href="success-stories.html" class="hover:text-primary transition-colors">Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="contact-support.html" class="hover:text-primary transition-colors">Contact Support</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" class="hover:text-primary transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-slate-500 text-sm">© 2026 Lumera Inc. All rights reserved.</p>
+                <div class="flex items-center gap-6 text-sm text-slate-500">
+                    <span>Made with <i data-lucide="heart" class="w-3 h-3 inline text-pink-500 fill-pink-500"></i> in the Philippines</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Sticky header effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 20) {
+                header.classList.add('bg-dark/80', 'backdrop-blur-lg', 'border-b', 'border-white/5', 'py-4', 'shadow-lg');
+                header.classList.remove('bg-transparent', 'py-5');
+            } else {
+                header.classList.remove('bg-dark/80', 'backdrop-blur-lg', 'border-b', 'border-white/5', 'py-4', 'shadow-lg');
+                header.classList.add('bg-transparent', 'py-5');
+            }
+        });
+    </script>
+</body>
+</html>
